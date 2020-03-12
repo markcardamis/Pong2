@@ -12,69 +12,69 @@
 
 ScoreText::ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, String fontPath)
 {
-    font.loadFromFile(fontPath);
-    text.setFont(font);
-    text.setCharacterSize(40);
-    text.setFillColor(sf::Color::White);
-    player = playerNumber;
-    xLimit = gameWidth;
-    yLimit = gameHeight;
+    m_Font.loadFromFile(fontPath);
+    m_Text.setFont(m_Font);
+    m_Text.setCharacterSize(40);
+    m_Text.setFillColor(sf::Color::White);
+    m_Player = playerNumber;
+    m_xLimit = gameWidth;
+    m_yLimit = gameHeight;
     reset();
 }
 
 Text ScoreText::getText()
 {
-    return text;
+    return m_Text;
 }
 
 int ScoreText::getScore()
 {
-    return scoreNumber;
+    return m_ScoreNumber;
 }
 
 void ScoreText::reset()
 {
-    scoreNumber = 0;
-    setString(scoreNumber);
-    switch (player)
+    m_ScoreNumber = 0;
+    m_SetString(m_ScoreNumber);
+    switch (m_Player)
     {
     case PLAYER_LEFT:
-        text.setPosition(2*xLimit/5, yLimit/10);
+        m_Text.setPosition(2*m_xLimit/5, m_yLimit/10);
         break;
     case PLAYER_RIGHT:
-        text.setPosition(3*xLimit/5, yLimit/10);
+        m_Text.setPosition(3*m_xLimit/5, m_yLimit/10);
         break;
     default:
-        text.setPosition(xLimit/2, yLimit/10);
+        m_Text.setPosition(m_xLimit/2, m_yLimit/10);
         break;
     }
 }
 
 void ScoreText::add()
 {
-    scoreNumber++;
-    setString(scoreNumber);
+    m_ScoreNumber++;
+    m_SetString(m_ScoreNumber);
 }
 
-void ScoreText::setString(int number)
+void ScoreText::m_SetString(int number)
 {
-    text.setString(std::to_string(scoreNumber));
-    centreText();
+    m_Text.setString(std::to_string(m_ScoreNumber));
+    m_CentreText();
 }
 
-void ScoreText::setString(String textString)
+void ScoreText::m_SetString(String textString)
 {
-    text.setString(textString);
-    centreText();
+    m_Text.setString(textString);
+    m_CentreText();
 }
 
-void ScoreText::centreText()
+void ScoreText::m_CentreText()
 {
-    objectRect = text.getLocalBounds();
-    text.setOrigin(objectRect.left +
-                        objectRect.width / 2.0f,
-                        objectRect.top +
-                        objectRect.height / 2.0f);
+    m_ObjectRect = m_Text.getLocalBounds();
+    m_Text.setOrigin(m_ObjectRect.left +
+                        m_ObjectRect.width / 2.0f,
+                        m_ObjectRect.top +
+                        m_ObjectRect.height / 2.0f);
 }
 
 

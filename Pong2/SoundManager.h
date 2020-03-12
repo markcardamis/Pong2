@@ -16,15 +16,15 @@ enum enumSound { SOUNDMANAGER_BACKGROUND = 0, SOUNDMANAGER_PADDLE = 1, SOUNDMANA
 class SoundManager
 {
 private:
-    SoundBuffer bufferBackground;
-    SoundBuffer bufferPaddle;
-    SoundBuffer bufferWall;
-    SoundBuffer bufferScore;
-    Sound soundBackground;
-    Sound soundPaddle;
-    Sound soundWall;
-    Sound soundScore;
-    enumSound soundSelect;
+    SoundBuffer m_BufferBackground;
+    SoundBuffer m_BufferPaddle;
+    SoundBuffer m_BufferWall;
+    SoundBuffer m_BufferScore;
+    Sound m_SoundBackground;
+    Sound m_SoundPaddle;
+    Sound m_SoundWall;
+    Sound m_SoundScore;
+    enumSound m_SoundSelect;
 public:
     SoundManager();
     void play(enumSound eSound);

@@ -17,13 +17,13 @@ class Ball
 {
 private:
     const float pi = 3.14159f;          // Set PI constant
-    CircleShape ball;                   // Create and store a Ball as a CircleShape in SFML
-    enumBallDirection direction;        // Set an initial direction for ball restarts
-    float speed;                        // Adjust the speed at which the Ball can move
-    float oSpeed;                       // Save the initial maximum speed to recall after stopping
-    float angle = 0.f;                  // Save the angle of trajectory
-    int xLimit;                         // Use the x-axis range to draw the Ball inside the screen
-    int yLimit;                         // Use the y-axis range to draw the Ball inside the screen
+    CircleShape m_Ball;                   // Create and store a Ball as a CircleShape in SFML
+    enumBallDirection m_Direction;        // Set an initial direction for ball restarts
+    float m_Speed;                        // Adjust the speed at which the Ball can move
+    float m_OriginalSpeed;                       // Save the initial maximum speed to recall after stopping
+    float m_Angle = 0.f;                  // Save the angle of trajectory
+    int m_xLimit;                         // Use the x-axis range to draw the Ball inside the screen
+    int m_yLimit;                         // Use the y-axis range to draw the Ball inside the screen
     
 public:
     Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight);

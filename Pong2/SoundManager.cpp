@@ -12,14 +12,14 @@
 
 SoundManager::SoundManager()
 {
-    bufferBackground.loadFromFile(BACKGROUND_SOUND_PATH);
-    bufferPaddle.loadFromFile(PADDLE_SOUND_PATH);
-    bufferWall.loadFromFile(WALL_SOUND_PATH);
-    bufferScore.loadFromFile(SCORE_SOUND_PATH);
-    soundBackground.setBuffer(bufferBackground);
-    soundPaddle.setBuffer(bufferPaddle);
-    soundWall.setBuffer(bufferWall);
-    soundScore.setBuffer(bufferScore);
+    m_BufferBackground.loadFromFile(BACKGROUND_SOUND_PATH);
+    m_BufferPaddle.loadFromFile(PADDLE_SOUND_PATH);
+    m_BufferWall.loadFromFile(WALL_SOUND_PATH);
+    m_BufferScore.loadFromFile(SCORE_SOUND_PATH);
+    m_SoundBackground.setBuffer(m_BufferBackground);
+    m_SoundPaddle.setBuffer(m_BufferPaddle);
+    m_SoundWall.setBuffer(m_BufferWall);
+    m_SoundScore.setBuffer(m_BufferScore);
 }
 
 void SoundManager::play(enumSound eSound)
@@ -27,23 +27,23 @@ void SoundManager::play(enumSound eSound)
     switch (eSound)
     {
     case SOUNDMANAGER_BACKGROUND:
-        soundBackground.setLoop(true);
-        soundBackground.play();
+        m_SoundBackground.setLoop(true);
+        m_SoundBackground.play();
         break;
     case SOUNDMANAGER_PADDLE:
-        soundPaddle.play();
+        m_SoundPaddle.play();
         break;
     case SOUNDMANAGER_WALL:
-        soundWall.play();
+        m_SoundWall.play();
         break;
     case SOUNDMANAGER_SCORE:
-        soundScore.play();
+        m_SoundScore.play();
         break;
     default:
-        soundBackground.stop();
-        soundPaddle.stop();
-        soundWall.stop();
-        soundScore.stop();
+        m_SoundBackground.stop();
+        m_SoundPaddle.stop();
+        m_SoundWall.stop();
+        m_SoundScore.stop();
         break;
     }
 }

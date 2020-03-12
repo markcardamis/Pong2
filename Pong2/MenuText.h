@@ -16,11 +16,11 @@ using namespace sf;
 class MenuText
 {
 private:
-    Text text[MAX_MENU_ITEMS];          // Create and store menu items as a Text array in SFML
-    Font font;                          // Set the font
-    FloatRect objectRect;               // Used to move location origin of object
-    int selectedItemIndex = 0;          // Variable to store the score
-    inline void centreText(int i);
+    Text m_Text[MAX_MENU_ITEMS];          // Create and store menu items as a Text array in SFML
+    Font m_Font;                          // Set the font
+    FloatRect m_ObjectRect;               // Used to move location origin of object
+    int m_SelectedItemIndex = 0;          // Variable to store the score
+    inline void m_CentreText(int i);
 
 public:
     MenuText(float width, float height, String fontPath);

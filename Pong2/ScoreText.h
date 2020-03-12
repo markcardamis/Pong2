@@ -16,16 +16,16 @@ enum enumPlayer { PLAYER_LEFT = 0, PLAYER_RIGHT = 1};
 class ScoreText
 {
 private:
-    Text text;                          // Create and store a score as a Text in SFML
-    Font font;                          // Set the font
-    FloatRect objectRect;               // Used to move location origin of object
-    enumPlayer player;                  // Set the player for correct text position on screen
-    int scoreNumber = 0;                // Variable to store the score
-    int xLimit;                         // Use the x-axis range to draw the Text inside the screen
-    int yLimit;                         // Use the y-axis range to draw the Text inside the screen
-    inline void setString(int);
-    inline void setString(String);
-    inline void centreText();
+    Text m_Text;                          // Create and store a score as a Text in SFML
+    Font m_Font;                          // Set the font
+    FloatRect m_ObjectRect;               // Used to move location origin of object
+    enumPlayer m_Player;                  // Set the player for correct text position on screen
+    int m_ScoreNumber = 0;                // Variable to store the score
+    int m_xLimit;                         // Use the x-axis range to draw the Text inside the screen
+    int m_yLimit;                         // Use the y-axis range to draw the Text inside the screen
+    inline void m_SetString(int);
+    inline void m_SetString(String);
+    inline void m_CentreText();
 public:
     ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, String fontPath);
     Text getText();

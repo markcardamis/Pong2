@@ -14,10 +14,10 @@ using namespace sf;
 class PauseText
 {
 private:
-    Text text;                  // Create a Text object in SFML
-    Font font;                  // Set the font
-    FloatRect objectRect;               // Used to move location origin of object
-    inline void centreText();
+    Text m_Text;                  // Create a Text object in SFML
+    Font m_Font;                  // Set the font
+    FloatRect m_ObjectRect;               // Used to move location origin of object
+    inline void m_CentreText();
 public:
     PauseText(int width, int height, String fontPath);
     Text getText();

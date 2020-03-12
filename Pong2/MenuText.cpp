@@ -11,22 +11,22 @@
 
 MenuText::MenuText(float width, float height, String fontPath)
 {
-    font.loadFromFile(fontPath);
-    text[0].setString("Single Player vs AI");
-    text[1].setString("Two Player");
-    text[2].setString("Two Player vs AI");
-    text[3].setString("Exit");
+    m_Font.loadFromFile(fontPath);
+    m_Text[0].setString("Single Player vs AI");
+    m_Text[1].setString("Two Player");
+    m_Text[2].setString("Two Player vs AI");
+    m_Text[3].setString("Exit");
 
     for (int i = 0; i < MAX_MENU_ITEMS; i++)
     {
-        text[i].setFont(font);
-        text[i].setFillColor(sf::Color::White);
-        text[i].setPosition(Vector2f(width/2, (height/(MAX_MENU_ITEMS + 2)) * (i+1)));
-        text[i].setCharacterSize(40);
-        centreText(i);
+        m_Text[i].setFont(m_Font);
+        m_Text[i].setFillColor(sf::Color::White);
+        m_Text[i].setPosition(Vector2f(width/2, (height/(MAX_MENU_ITEMS + 2)) * (i+1)));
+        m_Text[i].setCharacterSize(40);
+        m_CentreText(i);
     }
-    selectedItemIndex = 0;
-    text[0].setFillColor(sf::Color::Red);
+    m_SelectedItemIndex = 0;
+    m_Text[0].setFillColor(sf::Color::Red);
 
 }
 
@@ -39,40 +39,40 @@ void MenuText::draw(sf::RenderWindow &window)
 {
     for (int i = 0; i < MAX_MENU_ITEMS; ++i)
     {
-        window.draw(text[i]);
+        window.draw(m_Text[i]);
     }
 }
 
 void MenuText::moveUp()
 {
-    if (selectedItemIndex - 1 >= 0)
+    if (m_SelectedItemIndex - 1 >= 0)
     {
-        text[selectedItemIndex].setFillColor(Color::White);
-        selectedItemIndex--;
-        text[selectedItemIndex].setFillColor(Color::Red);
+        m_Text[m_SelectedItemIndex].setFillColor(Color::White);
+        m_SelectedItemIndex--;
+        m_Text[m_SelectedItemIndex].setFillColor(Color::Red);
     }
 }
 
 void MenuText::moveDown()
 {
-    if (selectedItemIndex + 1 < MAX_MENU_ITEMS)
+    if (m_SelectedItemIndex + 1 < MAX_MENU_ITEMS)
     {
-        text[selectedItemIndex].setFillColor(Color::White);
-        selectedItemIndex++;
-        text[selectedItemIndex].setFillColor(Color::Red);
+        m_Text[m_SelectedItemIndex].setFillColor(Color::White);
+        m_SelectedItemIndex++;
+        m_Text[m_SelectedItemIndex].setFillColor(Color::Red);
     }
 }
 
 int MenuText::getSelectedItem()
 {
-    return selectedItemIndex;
+    return m_SelectedItemIndex;
 }
 
-void MenuText::centreText(int i)
+void MenuText::m_CentreText(int i)
 {
-    objectRect = text[i].getLocalBounds();
-    text[i].setOrigin(objectRect.left +
-                        objectRect.width / 2.0f,
-                        objectRect.top +
-                        objectRect.height / 2.0f);
+    m_ObjectRect = m_Text[i].getLocalBounds();
+    m_Text[i].setOrigin(m_ObjectRect.left +
+                        m_ObjectRect.width / 2.0f,
+                        m_ObjectRect.top +
+                        m_ObjectRect.height / 2.0f);
 }

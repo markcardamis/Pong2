@@ -12,38 +12,38 @@
 
 PauseText::PauseText(int width, int height, String fontPath)
 {
-    font.loadFromFile(fontPath);
-    text.setFont(font);
-    text.setCharacterSize(40);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(Vector2f(width/2, height/2));
+    m_Font.loadFromFile(fontPath);
+    m_Text.setFont(m_Font);
+    m_Text.setCharacterSize(40);
+    m_Text.setFillColor(sf::Color::White);
+    m_Text.setPosition(Vector2f(width/2, height/2));
     reset();
 }
 
 Text PauseText::getText()
 {
-    return text;
+    return m_Text;
 }
 
 void PauseText::setString(String textString)
 {
-    text.setString(textString);
-    centreText();
+    m_Text.setString(textString);
+    m_CentreText();
 }
 
 void PauseText::reset()
 {
     setString("Press space to begin the round");
-    centreText();
+    m_CentreText();
 }
 
-void PauseText::centreText()
+void PauseText::m_CentreText()
 {
-    objectRect = text.getLocalBounds();
-    text.setOrigin(objectRect.left +
-                        objectRect.width / 2.0f,
-                        objectRect.top +
-                        objectRect.height / 2.0f);
+    m_ObjectRect = m_Text.getLocalBounds();
+    m_Text.setOrigin(m_ObjectRect.left +
+                        m_ObjectRect.width / 2.0f,
+                        m_ObjectRect.top +
+                        m_ObjectRect.height / 2.0f);
 }
 
 

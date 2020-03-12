@@ -13,25 +13,25 @@
 Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight)
 {
     std::srand(static_cast<unsigned int>(std::time(NULL)));
-    ball.setRadius(ballRadius);
-    ball.setFillColor(Color::White);
-    ball.setOrigin(ball.getGlobalBounds().width/2, ball.getGlobalBounds().height/2);
-    oSpeed = ballSpeed;
-    speed = ballSpeed;
-    xLimit = gameWidth;
-    yLimit = gameHeight;
+    m_Ball.setRadius(ballRadius);
+    m_Ball.setFillColor(Color::White);
+    m_Ball.setOrigin(m_Ball.getGlobalBounds().width/2, m_Ball.getGlobalBounds().height/2);
+    m_OriginalSpeed = ballSpeed;
+    m_Speed = ballSpeed;
+    m_xLimit = gameWidth;
+    m_yLimit = gameHeight;
     reset();
 }
 
 CircleShape Ball::getBall()
 {
-    return ball;
+    return m_Ball;
 }
 
 void Ball::reset(enumBallDirection ballDirection)
 {
-    setPosition(xLimit / 2, yLimit / 2);
-    setSpeed(oSpeed); // Reset Ball speed
+    setPosition(m_xLimit / 2, m_yLimit / 2);
+    setSpeed(m_OriginalSpeed); // Reset Ball speed
     
     float ballAngle;
     do
@@ -61,53 +61,53 @@ void Ball::reset(enumBallDirection ballDirection)
 
 void Ball::setPosition(float x, float y)
 {
-    ball.setPosition(x, y);
+    m_Ball.setPosition(x, y);
 }
 
 float Ball::getAngle()
 {
-    return angle;
+    return m_Angle;
 }
 
 void Ball::setAngle(float ballAngle)
 {
-    angle = ballAngle;
+    m_Angle = ballAngle;
 }
 
 void Ball::move(float offsetX, float offsetY)
 {
-    ball.move(offsetX, offsetY);
+    m_Ball.move(offsetX, offsetY);
 }
 
 void Ball::move(float deltaTime)
 {
-    float factor = speed * deltaTime;
+    float factor = m_Speed * deltaTime;
     move(std::cos(getAngle()) * factor, std::sin(getAngle()) * factor);
 }
 
 void Ball::setSpeed(float ballSpeed)
 {
-    speed = ballSpeed;
+    m_Speed = ballSpeed;
 }
 
 float Ball::getSpeed()
 {
-    return speed;
+    return m_Speed;
 }
 
 float Ball::getPositionX()
 {
-    return ball.getPosition().x;
+    return m_Ball.getPosition().x;
 }
 
 float Ball::getPositionY()
 {
-    return ball.getPosition().y;
+    return m_Ball.getPosition().y;
 }
 
 float Ball::getRadius()
 {
-    return ball.getRadius();
+    return m_Ball.getRadius();
 }
 
 bool Ball::isBallMovingLeft()
