@@ -42,6 +42,7 @@
 		990CBC6423FFEC61000C4C83 /* libsfml-audio.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.5.1.dylib"; path = "SFML/lib/libsfml-audio.2.5.1.dylib"; sourceTree = "<group>"; };
 		9927578923FFEA0600E15AC4 /* Pong2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pong2; sourceTree = BUILT_PRODUCTS_DIR; };
 		9927578C23FFEA0600E15AC4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		994D53E2241A553B00E75C8A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		994E31EF2414DC9E00099034 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9962EF4B2413ACFA0020D320 /* MenuText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MenuText.cpp; sourceTree = "<group>"; };
 		9962EF4C2413ACFA0020D320 /* MenuText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuText.h; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		9927578B23FFEA0600E15AC4 /* Pong2 */ = {
 			isa = PBXGroup;
 			children = (
+				994D53E2241A553B00E75C8A /* .gitignore */,
 				994E31EF2414DC9E00099034 /* README.md */,
 				9927578C23FFEA0600E15AC4 /* main.cpp */,
 				99EEC965241125950098A1DD /* Ball.h */,
