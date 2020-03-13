@@ -20,24 +20,29 @@ PauseText::PauseText(int width, int height, String fontPath)
     reset();
 }
 
-Text PauseText::getText()
+PauseText::~PauseText()
 {
-    return m_Text;
+    
+}
+
+void PauseText::draw(sf::RenderWindow &window)
+{
+    window.draw(m_Text);
 }
 
 void PauseText::setString(String textString)
 {
     m_Text.setString(textString);
-    m_CentreText();
+    inline_centreOrigin();
 }
 
 void PauseText::reset()
 {
     setString("Press space to begin the round");
-    m_CentreText();
+    inline_centreOrigin();
 }
 
-void PauseText::m_CentreText()
+void PauseText::inline_centreOrigin()
 {
     m_ObjectRect = m_Text.getLocalBounds();
     m_Text.setOrigin(m_ObjectRect.left +

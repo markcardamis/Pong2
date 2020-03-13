@@ -21,7 +21,7 @@ private:
 public:
     PauseText(int width, int height, String fontPath);
     ~PauseText();
-    Text getText();
+    void draw(sf::RenderWindow &window);
     void setString(String);
     void reset();
 };

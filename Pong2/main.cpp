@@ -254,9 +254,9 @@ int main()
 
             // Check the collisions between the ball and the paddles
             // Left Paddle
-            if (ball.getPositionX() - ball.getRadius() < leftPaddle.getPositionX() + leftPaddle.getHalfPaddleWidth() &&
-                ball.getPositionY() + ball.getRadius() >= leftPaddle.getPositionY() - leftPaddle.getHalfPaddleHeight() &&
-                ball.getPositionY() - ball.getRadius() <= leftPaddle.getPositionY() + leftPaddle.getHalfPaddleHeight())
+            if (ball.getPositionX() - ball.getRadius() < leftPaddle.getMaxPositionX() &&
+                ball.getPositionY() + ball.getRadius() >= leftPaddle.getMinPositionY() &&
+                ball.getPositionY() - ball.getRadius() <= leftPaddle.getMaxPositionY())
             {
                 if (ball.getPositionY() > leftPaddle.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
@@ -265,15 +265,15 @@ int main()
 
                 soundManager.play(SOUNDMANAGER_PADDLE);
                 ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(leftPaddle.getPositionX() + ball.getRadius() + leftPaddle.getHalfPaddleWidth() + 0.1f, ball.getPositionY());
+                ball.setPosition(leftPaddle.getMaxPositionX() + ball.getRadius() + 0.1f, ball.getPositionY());
             }
             
             // Left Paddle Player 2
             if (isPlayer2OnLeft &&
                 ball.isBallMovingLeft() &&
-                ball.getPositionX() - ball.getRadius() < leftPaddle2.getPositionX() + leftPaddle2.getHalfPaddleWidth() &&
-                ball.getPositionY() + ball.getRadius() >= leftPaddle2.getPositionY() - leftPaddle2.getHalfPaddleHeight() &&
-                ball.getPositionY() - ball.getRadius() <= leftPaddle2.getPositionY() + leftPaddle2.getHalfPaddleHeight())
+                ball.getPositionX() - ball.getRadius() < leftPaddle2.getMaxPositionX() &&
+                ball.getPositionY() + ball.getRadius() >= leftPaddle2.getMinPositionY() &&
+                ball.getPositionY() - ball.getRadius() <= leftPaddle2.getMaxPositionY())
             {
                 if (ball.getPositionY() > leftPaddle2.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
@@ -282,14 +282,14 @@ int main()
 
                 soundManager.play(SOUNDMANAGER_PADDLE);
                 ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(leftPaddle2.getPositionX() + ball.getRadius() + leftPaddle2.getHalfPaddleWidth() + 0.1f, ball.getPositionY());
+                ball.setPosition(leftPaddle2.getMaxPositionX() + ball.getRadius() + 0.1f, ball.getPositionY());
             }
             
 
             // Right Paddle
-            if (ball.getPositionX() + ball.getRadius() >= rightPaddle.getPositionX() - rightPaddle.getHalfPaddleWidth() &&
-                ball.getPositionY() + ball.getRadius() >= rightPaddle.getPositionY() - rightPaddle.getHalfPaddleHeight() &&
-                ball.getPositionY() - ball.getRadius() <= rightPaddle.getPositionY() + rightPaddle.getHalfPaddleHeight())
+            if (ball.getPositionX() + ball.getRadius() >= rightPaddle.getMinPositionX() &&
+                ball.getPositionY() + ball.getRadius() >= rightPaddle.getMinPositionY() &&
+                ball.getPositionY() - ball.getRadius() <= rightPaddle.getMaxPositionY())
             {
                 if (ball.getPositionY() > rightPaddle.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
@@ -298,7 +298,7 @@ int main()
 
                 soundManager.play(SOUNDMANAGER_PADDLE);
                 ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(rightPaddle.getPositionX() - ball.getRadius() - rightPaddle.getHalfPaddleWidth() - 0.1f, ball.getPositionY());
+                ball.setPosition(rightPaddle.getMinPositionX() - ball.getRadius() - 0.1f, ball.getPositionY());
             }
         }
         
@@ -315,22 +315,22 @@ int main()
                 menuText.draw(window);
                 break;
             case GAME_PAUSED:
-                window.draw(pauseText.getText());
+                pauseText.draw(window);
                 break;
             case GAME_RUNNING:
                 // Draw the paddles and the ball
-                window.draw(leftPaddle.getPaddle());
+                leftPaddle.draw(window);
                 if (isPlayer2OnLeft)
                 {
-                    window.draw(leftPaddle2.getPaddle());
+                    leftPaddle2.draw(window);
                 }
-                window.draw(rightPaddle.getPaddle());
-                window.draw(leftScoreText.getText());
-                window.draw(rightScoreText.getText());
-                window.draw(ball.getBall());
+                rightPaddle.draw(window);
+                leftScoreText.draw(window);
+                rightScoreText.draw(window);
+                ball.draw(window);
                 break;
             case GAME_WON:
-                window.draw(pauseText.getText());
+                pauseText.draw(window);
                 break;
         }
 

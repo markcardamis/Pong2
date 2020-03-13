@@ -20,15 +20,15 @@ private:
     Font m_Font;                          // Set the font
     FloatRect m_ObjectRect;               // Used to move location origin of object
     enumPlayer m_Player;                  // Set the player for correct text position on screen
-    int m_ScoreNumber = 0;                // Variable to store the score
+    int m_ScoreNumber;                    // Variable to store the score
     int m_xLimit;                         // Use the x-axis range to draw the Text inside the screen
     int m_yLimit;                         // Use the y-axis range to draw the Text inside the screen
     inline void m_SetString(int);
-    inline void m_SetString(String);
-    inline void m_CentreText();
+    inline void inline_centreOrigin();    // Change Origin of Text Object
 public:
     ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, String fontPath);
-    Text getText();
+     ~ScoreText();
+    void draw(sf::RenderWindow &window);
     int getScore();
     void reset();
     void add();

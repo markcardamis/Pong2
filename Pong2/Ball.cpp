@@ -23,9 +23,14 @@ Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight)
     reset();
 }
 
-CircleShape Ball::getBall()
+Ball::~Ball()
 {
-    return m_Ball;
+    
+}
+
+void Ball::draw(sf::RenderWindow &window)
+{
+    window.draw(m_Ball);
 }
 
 void Ball::reset(enumBallDirection ballDirection)

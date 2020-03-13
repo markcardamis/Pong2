@@ -27,7 +27,8 @@ private:
     
 public:
     Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight);
-    CircleShape getBall();
+    ~Ball();
+    void draw(sf::RenderWindow &window);
     void reset(enumBallDirection ballDirection = BALL_INITIAL);
     void setPosition(float x, float y);
     float getAngle();

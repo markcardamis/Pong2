@@ -23,9 +23,14 @@ Paddle::Paddle(Vector2f paddleSize, float paddleSpeed, int gameWidth, int gameHe
     m_PaddleNumber = paddlePlayer;
 }
 
-RectangleShape Paddle::getPaddle()
+Paddle::~Paddle()
 {
-    return m_Paddle;
+    
+}
+
+void Paddle::draw(sf::RenderWindow &window)
+{
+    window.draw(m_Paddle);
 }
 
 void Paddle::reset()
@@ -33,22 +38,17 @@ void Paddle::reset()
     switch (m_PaddleNumber)
     {
     case PADDLE_LEFT:
-        setPosition(m_PaddleXBuffer + getHalfPaddleWidth(), m_yLimit / 2);
+        inline_setPosition(m_PaddleXWallBuffer + inline_getHalfPaddleWidth(), m_yLimit / 2);
         break;
     case PADDLE_RIGHT:
-        setPosition(m_xLimit - m_PaddleXBuffer - getHalfPaddleWidth(), m_yLimit / 2);
+        inline_setPosition(m_xLimit - m_PaddleXWallBuffer - inline_getHalfPaddleWidth(), m_yLimit / 2);
         break;
     case PADDLE_LEFT_2:
-        setPosition(10*m_PaddleXBuffer + getHalfPaddleWidth(), m_yLimit / 2);
+        inline_setPosition(m_PaddleXWallBuffer + inline_getHalfPaddleWidth()*6, m_yLimit / 2);
         break;
     default:
         break;
     }
-}
-
-void Paddle::setPosition(float x, float y)
-{
-    m_Paddle.setPosition(x, y);
 }
 
 void Paddle::move(float offsetX, float offsetY)
@@ -78,7 +78,7 @@ float Paddle::getPositionY()
 
 void Paddle::moveUp(float deltaTime)
 {
-    if (getPositionY() - getHalfPaddleHeight() > m_PaddleYBuffer)
+    if (getMaxPositionY() > m_PaddleYWallBuffer)
     {
         move(0.f, -m_Speed * deltaTime);
     }
@@ -86,7 +86,7 @@ void Paddle::moveUp(float deltaTime)
 
 void Paddle::moveDown(float deltaTime)
 {
-    if (getPositionY() + getHalfPaddleHeight() < m_yLimit - m_PaddleYBuffer)
+    if (getMaxPositionY() < m_yLimit - m_PaddleYWallBuffer)
     {
         move(0.f, m_Speed * deltaTime);
     }
@@ -94,8 +94,8 @@ void Paddle::moveDown(float deltaTime)
 
 void Paddle::autoMove(float deltaTime) // Move the computer's paddle
 {
-    if (((getSpeed() < 0.f) && (getPositionY() - getHalfPaddleHeight() > m_PaddleYBuffer)) ||
-            ((getSpeed() > 0.f) && (getPositionY() + getHalfPaddleHeight() < m_yLimit - m_PaddleYBuffer)))
+    if (((getSpeed() < 0.f) && (getMinPositionY() > m_PaddleYWallBuffer)) ||
+            ((getSpeed() > 0.f) && (getMaxPositionY() < m_yLimit - m_PaddleYWallBuffer)))
         {
             move(0.f, getSpeed() * deltaTime);
         }
@@ -103,11 +103,11 @@ void Paddle::autoMove(float deltaTime) // Move the computer's paddle
 
 void Paddle::autoSetDirection(float ballPositionY, float ballRadius)
 {
-    if (ballPositionY + ballRadius > getPositionY() + getHalfPaddleHeight())
+    if (ballPositionY + ballRadius > getMaxPositionY())
     {
         setSpeed(m_SpeedOriginal);
     }
-    else if (ballPositionY - ballRadius < getPositionY() - getHalfPaddleHeight())
+    else if (ballPositionY - ballRadius < getMinPositionY())
     {
         setSpeed(-m_SpeedOriginal);
     }
@@ -117,13 +117,38 @@ void Paddle::autoSetDirection(float ballPositionY, float ballRadius)
     }
 }
 
-float Paddle::getHalfPaddleWidth()
+float Paddle::inline_getHalfPaddleWidth()
 {
     return m_Paddle.getSize().x/2;
 }
 
-float Paddle::getHalfPaddleHeight()
+float Paddle::inline_getHalfPaddleHeight()
 {
     return m_Paddle.getSize().y/2;
+}
+
+float Paddle::getMinPositionX()
+{
+    return getPositionX() - inline_getHalfPaddleWidth();
+}
+
+float Paddle::getMaxPositionX()
+{
+    return getPositionX() + inline_getHalfPaddleWidth();
+}
+
+float Paddle::getMinPositionY()
+{
+    return getPositionY() - inline_getHalfPaddleHeight();
+}
+
+float Paddle::getMaxPositionY()
+{
+    return getPositionY() + inline_getHalfPaddleHeight();
+}
+
+void Paddle::inline_setPosition(float x, float y)
+{
+    m_Paddle.setPosition(x, y);
 }
 

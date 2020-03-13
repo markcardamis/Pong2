@@ -22,9 +22,14 @@ ScoreText::ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, Str
     reset();
 }
 
-Text ScoreText::getText()
+ScoreText::~ScoreText()
 {
-    return m_Text;
+    
+}
+
+void ScoreText::draw(sf::RenderWindow &window)
+{
+    window.draw(m_Text);
 }
 
 int ScoreText::getScore()
@@ -59,16 +64,16 @@ void ScoreText::add()
 void ScoreText::m_SetString(int number)
 {
     m_Text.setString(std::to_string(m_ScoreNumber));
-    m_CentreText();
+    inline_centreOrigin();
 }
 
-void ScoreText::m_SetString(String textString)
-{
-    m_Text.setString(textString);
-    m_CentreText();
-}
+//void ScoreText::m_SetString(String textString)
+//{
+//    m_Text.setString(textString);
+//    inline_centreOrigin();
+//}
 
-void ScoreText::m_CentreText()
+void ScoreText::inline_centreOrigin()
 {
     m_ObjectRect = m_Text.getLocalBounds();
     m_Text.setOrigin(m_ObjectRect.left +
