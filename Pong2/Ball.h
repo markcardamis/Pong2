@@ -9,18 +9,18 @@
 #ifndef Ball_h
 #define Ball_h
 
-#include "Paddle.h"
-
 using namespace sf;
 
 enum enumBallDirection { BALL_INITIAL = 0, BALL_RIGHT = 1, BALL_LEFT = 2, BALL_UP = 3, BALL_DOWN = 4 };
 
+class Paddle;
+
 class Ball
 {
 private:
-    const float pi = 3.14159f;          // Set PI constant
     CircleShape m_Ball;                   // Create and store a Ball as a CircleShape in SFML
     enumBallDirection m_Direction;        // Set an initial direction for ball restarts
+    float m_Pi;                           // Save variable PI which is passed in constructor
     float m_Speed;                        // Adjust the speed at which the Ball can move
     float m_OriginalSpeed;                       // Save the initial maximum speed to recall after stopping
     float m_Angle = 0.f;                  // Save the angle of trajectory
@@ -28,7 +28,7 @@ private:
     int m_yLimit;                         // Use the y-axis range to draw the Ball inside the screen
     
 public:
-    Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight);
+    Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi);
     ~Ball();
     void draw(sf::RenderWindow &window);
     void reset(enumBallDirection ballDirection = BALL_INITIAL);

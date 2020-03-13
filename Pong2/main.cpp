@@ -53,7 +53,7 @@ int main()
     Paddle leftPaddle(PADDLE_SIZE, leftPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT);
     Paddle leftPaddle2(PADDLE_SIZE, leftPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT_2);
     Paddle rightPaddle(PADDLE_SIZE, rightPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_RIGHT);
-    Ball ball(BALL_RADIUS, ballSpeed, GAME_WIDTH, GAME_HEIGHT);
+    Ball ball(BALL_RADIUS, ballSpeed, GAME_WIDTH, GAME_HEIGHT, PI);
     
     // Create the Text display classes
     MenuText menuText(GAME_WIDTH, GAME_HEIGHT, FONT_PATH);

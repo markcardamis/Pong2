@@ -10,9 +10,8 @@
 #include <SFML/Graphics.hpp>
 #include "Ball.h"
 #include "Paddle.h"
-#include "Constants.h"
 
-Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight)
+Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi)
 {
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     m_Ball.setRadius(ballRadius);
@@ -22,6 +21,7 @@ Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight)
     m_Speed = ballSpeed;
     m_xLimit = gameWidth;
     m_yLimit = gameHeight;
+    m_Pi = pi;
     reset();
 }
 
@@ -44,7 +44,7 @@ void Ball::reset(enumBallDirection ballDirection)
     do
     {
         // Make sure the ball initial angle is not too much vertical
-        ballAngle = std::rand() % 360 * 2 * pi / 360;
+        ballAngle = std::rand() % 360 * 2 * m_Pi / 360;
     }
     while (std::cos(ballAngle) < 0.7f);
         
@@ -57,7 +57,7 @@ void Ball::reset(enumBallDirection ballDirection)
         setAngle(ballAngle);
         break;
     case BALL_LEFT:
-        setAngle(ballAngle+pi);
+        setAngle(ballAngle + m_Pi);
         break;
     default:
         setAngle(ballAngle);
@@ -111,11 +111,11 @@ void Ball::reboundPaddle(Paddle& paddle)
     // If ball hits bottom half of paddle add more down angle
     if (getPositionY() > paddle.getPositionY())
     {
-        setAngle(PI - getAngle() + (std::rand() % 20) * PI / 180);
+        setAngle(m_Pi - getAngle() + (std::rand() % 20) * m_Pi / 180);
     }
     else // If ball hits top half of paddle then add more up angle
     {
-        setAngle(PI - getAngle() - (std::rand() % 20) * PI / 180);
+        setAngle(m_Pi - getAngle() - (std::rand() % 20) * m_Pi / 180);
     }
     
     setSpeed(getSpeed()+10); // Increase ball speed
