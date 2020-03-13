@@ -26,21 +26,22 @@ private:
     float m_Angle = 0.f;                  // Save the angle of trajectory
     int m_xLimit;                         // Use the x-axis range to draw the Ball inside the screen
     int m_yLimit;                         // Use the y-axis range to draw the Ball inside the screen
+    float _getAngle();
+    void _setAngle(float angle);
+    void _move(float offsetX, float offsetY);
+    void _setPosition(float x, float y);
+    float _getSpeed();
+    void _setSpeed(float ballSpeed);
+
     
 public:
     Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi);
     ~Ball();
     void draw(sf::RenderWindow &window);
     void reset(enumBallDirection ballDirection = BALL_INITIAL);
-    void setPosition(float x, float y);
-    float getAngle();
-    void setAngle(float angle);
-    void move(float offsetX, float offsetY);
     void move(float deltaTime);
     void reboundWall(enumBallDirection ballDirection);
     void reboundPaddle(Paddle& paddle);
-    float getSpeed();
-    void setSpeed(float ballSpeed);
     float getPositionX();
     float getPositionY();
     float getRadius();

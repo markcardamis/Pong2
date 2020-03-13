@@ -37,8 +37,8 @@ void Ball::draw(sf::RenderWindow &window)
 
 void Ball::reset(enumBallDirection ballDirection)
 {
-    setPosition(m_xLimit / 2, m_yLimit / 2);
-    setSpeed(m_OriginalSpeed); // Reset Ball speed
+    _setPosition(m_xLimit / 2, m_yLimit / 2);
+    _setSpeed(m_OriginalSpeed); // Reset Ball speed
     
     float ballAngle;
     do
@@ -51,58 +51,38 @@ void Ball::reset(enumBallDirection ballDirection)
     switch (ballDirection)
     {
     case BALL_INITIAL:
-        setAngle(ballAngle);
+        _setAngle(ballAngle);
         break;
     case BALL_RIGHT:
-        setAngle(ballAngle);
+        _setAngle(ballAngle);
         break;
     case BALL_LEFT:
-        setAngle(ballAngle + m_Pi);
+        _setAngle(ballAngle + m_Pi);
         break;
     default:
-        setAngle(ballAngle);
+        _setAngle(ballAngle);
         break;
     }
 
-}
-
-void Ball::setPosition(float x, float y)
-{
-    m_Ball.setPosition(x, y);
-}
-
-float Ball::getAngle()
-{
-    return m_Angle;
-}
-
-void Ball::setAngle(float ballAngle)
-{
-    m_Angle = ballAngle;
-}
-
-void Ball::move(float offsetX, float offsetY)
-{
-    m_Ball.move(offsetX, offsetY);
 }
 
 void Ball::move(float deltaTime)
 {
     float factor = m_Speed * deltaTime;
-    move(std::cos(getAngle()) * factor, std::sin(getAngle()) * factor);
+    _move(std::cos(_getAngle()) * factor, std::sin(_getAngle()) * factor);
 }
 
 void Ball::reboundWall(enumBallDirection ballDirection)
 {
-    float reboundAngle = -1*getAngle();
-    setAngle(reboundAngle);
+    float reboundAngle = -1*_getAngle();
+    _setAngle(reboundAngle);
     if (ballDirection == BALL_DOWN) // Rebound down
     {
-        m_Ball.setPosition(getPositionX(), getRadius() + 0.1f);
+        _setPosition(getPositionX(), getRadius() + 0.1f);
     }
     else if (ballDirection == BALL_UP) // Rebound up
     {
-        m_Ball.setPosition(getPositionX(), m_yLimit - getRadius() - 0.1f);
+        _setPosition(getPositionX(), m_yLimit - getRadius() - 0.1f);
     }
 }
 
@@ -111,34 +91,24 @@ void Ball::reboundPaddle(Paddle& paddle)
     // If ball hits bottom half of paddle add more down angle
     if (getPositionY() > paddle.getPositionY())
     {
-        setAngle(m_Pi - getAngle() + (std::rand() % 20) * m_Pi / 180);
+        _setAngle(m_Pi - _getAngle() + (std::rand() % 20) * m_Pi / 180);
     }
     else // If ball hits top half of paddle then add more up angle
     {
-        setAngle(m_Pi - getAngle() - (std::rand() % 20) * m_Pi / 180);
+        _setAngle(m_Pi - _getAngle() - (std::rand() % 20) * m_Pi / 180);
     }
     
-    setSpeed(getSpeed()+10); // Increase ball speed
+    _setSpeed(_getSpeed()+10); // Increase ball speed
     
     if (getPositionX() < m_xLimit/2) //Left Paddle
     {
-        setPosition(paddle.getMaxPositionX() + getRadius() + 0.1f, getPositionY());
+        _setPosition(paddle.getMaxPositionX() + getRadius() + 0.1f, getPositionY());
     }
     else //Right Paddle
     {
-        setPosition(paddle.getMinPositionX() - getRadius() - 0.1f, getPositionY());
+        _setPosition(paddle.getMinPositionX() - getRadius() - 0.1f, getPositionY());
     }
     
-}
-
-void Ball::setSpeed(float ballSpeed)
-{
-    m_Speed = ballSpeed;
-}
-
-float Ball::getSpeed()
-{
-    return m_Speed;
 }
 
 float Ball::getPositionX()
@@ -178,7 +148,36 @@ float Ball::getMaxPositionY()
 
 bool Ball::isBallMovingLeft()
 {
-    return (std::cos(getAngle()) < 0? true: false);
+    return (std::cos(_getAngle()) < 0? true: false);
 }
 
+float Ball::_getAngle()
+{
+    return m_Angle;
+}
+
+void Ball::_setAngle(float ballAngle)
+{
+    m_Angle = ballAngle;
+}
+
+void Ball::_move(float offsetX, float offsetY)
+{
+    m_Ball.move(offsetX, offsetY);
+}
+
+void Ball::_setPosition(float x, float y)
+{
+    m_Ball.setPosition(x, y);
+}
+
+float Ball::_getSpeed()
+{
+    return m_Speed;
+}
+
+void Ball::_setSpeed(float ballSpeed)
+{
+    m_Speed = ballSpeed;
+}
 
