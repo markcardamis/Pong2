@@ -40,6 +40,10 @@ public:
     float getPositionX();
     float getPositionY();
     float getRadius();
+    float getMinPositionX();
+    float getMaxPositionX();
+    float getMinPositionY();
+    float getMaxPositionY();
     bool isBallMovingLeft();
 };
 

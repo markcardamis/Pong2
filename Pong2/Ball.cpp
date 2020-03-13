@@ -115,8 +115,29 @@ float Ball::getRadius()
     return m_Ball.getRadius();
 }
 
+float Ball::getMinPositionX()
+{
+    return getPositionX() - getRadius();
+}
+
+float Ball::getMaxPositionX()
+{
+    return getPositionX() + getRadius();
+}
+
+float Ball::getMinPositionY()
+{
+    return getPositionY() - getRadius();
+}
+
+float Ball::getMaxPositionY()
+{
+    return getPositionY() + getRadius();
+}
+
 bool Ball::isBallMovingLeft()
 {
     return (std::cos(getAngle()) < 0? true: false);
 }
+
 

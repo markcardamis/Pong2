@@ -217,7 +217,7 @@ int main()
             ball.move(deltaTime);
 
             // Check collisions between the ball and the screen
-            if (ball.getPositionX() - ball.getRadius() < 0.f)
+            if (ball.getMinPositionX() < 0.f)
             {
                 gameState = GAME_PAUSED;
                 soundManager.play(SOUNDMANAGER_SCORE);
@@ -228,7 +228,7 @@ int main()
                     pauseText.setString("RIGHT PLAYER won\n\nPress Enter to restart\nPress Escape to exit");
                 }
             }
-            if (ball.getPositionX() + ball.getRadius() > GAME_WIDTH)
+            if (ball.getMaxPositionX() > GAME_WIDTH)
             {
                 gameState = GAME_PAUSED;
                 soundManager.play(SOUNDMANAGER_SCORE);
@@ -239,13 +239,13 @@ int main()
                     pauseText.setString("LEFT PLAYER won\n\nPress Enter to restart\nPress Escape to exit");
                 }
             }
-            if (ball.getPositionY() - ball.getRadius() < 0.f)
+            if (ball.getMinPositionY() < 0.f)
             {
                 soundManager.play(SOUNDMANAGER_WALL);
                 ball.setAngle(-ball.getAngle());
                 ball.setPosition(ball.getPositionX(), ball.getRadius() + 0.1f);
             }
-            if (ball.getPositionY() + ball.getRadius() >= GAME_HEIGHT)
+            if (ball.getMaxPositionY() >= GAME_HEIGHT)
             {
                 soundManager.play(SOUNDMANAGER_WALL);
                 ball.setAngle(-ball.getAngle());
@@ -254,9 +254,9 @@ int main()
 
             // Check the collisions between the ball and the paddles
             // Left Paddle
-            if (ball.getPositionX() - ball.getRadius() < leftPaddle.getMaxPositionX() &&
-                ball.getPositionY() + ball.getRadius() >= leftPaddle.getMinPositionY() &&
-                ball.getPositionY() - ball.getRadius() <= leftPaddle.getMaxPositionY())
+            if (ball.getMinPositionX() < leftPaddle.getMaxPositionX() &&
+                ball.getMaxPositionY() >= leftPaddle.getMinPositionY() &&
+                ball.getMinPositionY() <= leftPaddle.getMaxPositionY())
             {
                 if (ball.getPositionY() > leftPaddle.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
@@ -271,9 +271,9 @@ int main()
             // Left Paddle Player 2
             if (isPlayer2OnLeft &&
                 ball.isBallMovingLeft() &&
-                ball.getPositionX() - ball.getRadius() < leftPaddle2.getMaxPositionX() &&
-                ball.getPositionY() + ball.getRadius() >= leftPaddle2.getMinPositionY() &&
-                ball.getPositionY() - ball.getRadius() <= leftPaddle2.getMaxPositionY())
+                ball.getMinPositionX() < leftPaddle2.getMaxPositionX() &&
+                ball.getMaxPositionY() >= leftPaddle2.getMinPositionY() &&
+                ball.getMinPositionY() <= leftPaddle2.getMaxPositionY())
             {
                 if (ball.getPositionY() > leftPaddle2.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
@@ -287,9 +287,9 @@ int main()
             
 
             // Right Paddle
-            if (ball.getPositionX() + ball.getRadius() >= rightPaddle.getMinPositionX() &&
-                ball.getPositionY() + ball.getRadius() >= rightPaddle.getMinPositionY() &&
-                ball.getPositionY() - ball.getRadius() <= rightPaddle.getMaxPositionY())
+            if (ball.getMaxPositionX() >= rightPaddle.getMinPositionX() &&
+                ball.getMaxPositionY() >= rightPaddle.getMinPositionY() &&
+                ball.getMinPositionY() <= rightPaddle.getMaxPositionY())
             {
                 if (ball.getPositionY() > rightPaddle.getPositionY())
                     ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
