@@ -78,7 +78,7 @@ float Paddle::getPositionY()
 
 void Paddle::moveUp(float deltaTime)
 {
-    if (getMaxPositionY() > m_PaddleYWallBuffer)
+    if (getMinPositionY() > m_PaddleYWallBuffer)
     {
         move(0.f, -m_Speed * deltaTime);
     }

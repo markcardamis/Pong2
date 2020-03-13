@@ -9,6 +9,8 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "Ball.h"
+#include "Paddle.h"
+#include "Constants.h"
 
 Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight)
 {
@@ -88,6 +90,45 @@ void Ball::move(float deltaTime)
 {
     float factor = m_Speed * deltaTime;
     move(std::cos(getAngle()) * factor, std::sin(getAngle()) * factor);
+}
+
+void Ball::reboundWall(enumBallDirection ballDirection)
+{
+    float reboundAngle = -1*getAngle();
+    setAngle(reboundAngle);
+    if (ballDirection == BALL_DOWN) // Rebound down
+    {
+        m_Ball.setPosition(getPositionX(), getRadius() + 0.1f);
+    }
+    else if (ballDirection == BALL_UP) // Rebound up
+    {
+        m_Ball.setPosition(getPositionX(), m_yLimit - getRadius() - 0.1f);
+    }
+}
+
+void Ball::reboundPaddle(Paddle& paddle)
+{
+    // If ball hits bottom half of paddle add more down angle
+    if (getPositionY() > paddle.getPositionY())
+    {
+        setAngle(PI - getAngle() + (std::rand() % 20) * PI / 180);
+    }
+    else // If ball hits top half of paddle then add more up angle
+    {
+        setAngle(PI - getAngle() - (std::rand() % 20) * PI / 180);
+    }
+    
+    setSpeed(getSpeed()+10); // Increase ball speed
+    
+    if (getPositionX() < m_xLimit/2) //Left Paddle
+    {
+        setPosition(paddle.getMaxPositionX() + getRadius() + 0.1f, getPositionY());
+    }
+    else //Right Paddle
+    {
+        setPosition(paddle.getMinPositionX() - getRadius() - 0.1f, getPositionY());
+    }
+    
 }
 
 void Ball::setSpeed(float ballSpeed)

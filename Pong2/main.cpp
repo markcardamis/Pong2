@@ -239,17 +239,15 @@ int main()
                     pauseText.setString("LEFT PLAYER won\n\nPress Enter to restart\nPress Escape to exit");
                 }
             }
-            if (ball.getMinPositionY() < 0.f)
+            if (ball.getMinPositionY() <= 0.f)
             {
                 soundManager.play(SOUNDMANAGER_WALL);
-                ball.setAngle(-ball.getAngle());
-                ball.setPosition(ball.getPositionX(), ball.getRadius() + 0.1f);
+                ball.reboundWall(BALL_DOWN);
             }
             if (ball.getMaxPositionY() >= GAME_HEIGHT)
             {
                 soundManager.play(SOUNDMANAGER_WALL);
-                ball.setAngle(-ball.getAngle());
-                ball.setPosition(ball.getPositionX(), GAME_HEIGHT - ball.getRadius() - 0.1f);
+                ball.reboundWall(BALL_UP);
             }
 
             // Check the collisions between the ball and the paddles
@@ -258,14 +256,8 @@ int main()
                 ball.getMaxPositionY() >= leftPaddle.getMinPositionY() &&
                 ball.getMinPositionY() <= leftPaddle.getMaxPositionY())
             {
-                if (ball.getPositionY() > leftPaddle.getPositionY())
-                    ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
-                else
-                    ball.setAngle(PI - ball.getAngle() - (std::rand() % 20) * PI / 180);
-
+                ball.reboundPaddle(leftPaddle);
                 soundManager.play(SOUNDMANAGER_PADDLE);
-                ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(leftPaddle.getMaxPositionX() + ball.getRadius() + 0.1f, ball.getPositionY());
             }
             
             // Left Paddle Player 2
@@ -275,14 +267,8 @@ int main()
                 ball.getMaxPositionY() >= leftPaddle2.getMinPositionY() &&
                 ball.getMinPositionY() <= leftPaddle2.getMaxPositionY())
             {
-                if (ball.getPositionY() > leftPaddle2.getPositionY())
-                    ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
-                else
-                    ball.setAngle(PI - ball.getAngle() - (std::rand() % 20) * PI / 180);
-
+                ball.reboundPaddle(leftPaddle2);
                 soundManager.play(SOUNDMANAGER_PADDLE);
-                ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(leftPaddle2.getMaxPositionX() + ball.getRadius() + 0.1f, ball.getPositionY());
             }
             
 
@@ -291,14 +277,8 @@ int main()
                 ball.getMaxPositionY() >= rightPaddle.getMinPositionY() &&
                 ball.getMinPositionY() <= rightPaddle.getMaxPositionY())
             {
-                if (ball.getPositionY() > rightPaddle.getPositionY())
-                    ball.setAngle(PI - ball.getAngle() + (std::rand() % 20) * PI / 180);
-                else
-                    ball.setAngle(PI - ball.getAngle() - (std::rand() % 20) * PI / 180);
-
+                ball.reboundPaddle(rightPaddle);
                 soundManager.play(SOUNDMANAGER_PADDLE);
-                ball.setSpeed(ball.getSpeed()+10);
-                ball.setPosition(rightPaddle.getMinPositionX() - ball.getRadius() - 0.1f, ball.getPositionY());
             }
         }
         

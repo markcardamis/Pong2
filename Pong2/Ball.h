@@ -9,9 +9,11 @@
 #ifndef Ball_h
 #define Ball_h
 
+#include "Paddle.h"
+
 using namespace sf;
 
-enum enumBallDirection { BALL_INITIAL = 0, BALL_RIGHT = 1, BALL_LEFT = 2 };
+enum enumBallDirection { BALL_INITIAL = 0, BALL_RIGHT = 1, BALL_LEFT = 2, BALL_UP = 3, BALL_DOWN = 4 };
 
 class Ball
 {
@@ -35,6 +37,8 @@ public:
     void setAngle(float angle);
     void move(float offsetX, float offsetY);
     void move(float deltaTime);
+    void reboundWall(enumBallDirection ballDirection);
+    void reboundPaddle(Paddle& paddle);
     float getSpeed();
     void setSpeed(float ballSpeed);
     float getPositionX();
