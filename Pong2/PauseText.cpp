@@ -33,16 +33,16 @@ void PauseText::draw(sf::RenderWindow &window)
 void PauseText::setString(String textString)
 {
     m_Text.setString(textString);
-    inline_centreOrigin();
+    _centreOrigin();
 }
 
 void PauseText::reset()
 {
     setString("Press space to begin the round");
-    inline_centreOrigin();
+    _centreOrigin();
 }
 
-void PauseText::inline_centreOrigin()
+void PauseText::_centreOrigin()
 {
     m_ObjectRect = m_Text.getLocalBounds();
     m_Text.setOrigin(m_ObjectRect.left +

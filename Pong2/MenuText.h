@@ -19,9 +19,9 @@ private:
     Font m_Font;                          // Set the font
     FloatRect m_ObjectRect;               // Used to move location origin of object
     int m_SelectedItemIndex;              // Variable to store the selected menu item
-    inline void inline_addString(String string, float width, float height); // Add Text to Vector
-    inline Text inline_centreOrigin(Text textObject);                       // Change Origin of Text Object
-    inline void inline_verticallySpaceText(float width, float height);      // Vertically space the MenuText objects
+    void _addString(String string, float width, float height); // Add Text to Vector
+    Text _centreOrigin(Text textObject);                       // Change Origin of Text Object
+    void _verticallySpaceText(float width, float height);      // Vertically space the MenuText objects
 
 public:
     MenuText(float width, float height, String fontPath);

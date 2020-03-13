@@ -24,11 +24,10 @@ private:
     float m_SpeedOriginal;                       // Save the initial maximum speed to recall after stopping
     int m_xLimit;                         // Use the x-axis range to draw the Paddle inside the screen
     int m_yLimit;                         // Limit y-axis range to stop Paddle moving off screen
-    float inline_getHalfPaddleWidth();  // Helper function to retrieve the width of the Paddle
-    float inline_getHalfPaddleHeight(); // Helper function to retrieve the height of the Paddle
-    inline void inline_setPosition(float x, float y); // Helper function to set initial position of Paddle
+    float _getHalfPaddleWidth();  // Helper function to retrieve the width of the Paddle
+    float _getHalfPaddleHeight(); // Helper function to retrieve the height of the Paddle
+    void _setPosition(float x, float y); // Helper function to set initial position of Paddle
 
-    
 public:
     Paddle(Vector2f paddleSize, float paddleSpeed, int gameWidth, int gameHeight, enumPaddlePlayer paddlePlayer);
     ~Paddle();
@@ -43,12 +42,10 @@ public:
     void moveDown(float deltaTime);
     void autoMove(float deltaTime);
     void autoSetDirection(float ballPositionY, float ballRadius); // Set the Paddle direction to follow the ball
-    
     float getMinPositionX();
     float getMaxPositionX();
     float getMinPositionY();
     float getMaxPositionY();
-
 };
 
 #endif /* Paddle_h */

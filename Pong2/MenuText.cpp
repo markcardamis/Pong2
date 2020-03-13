@@ -17,10 +17,10 @@ MenuText::MenuText(float width, float height, String fontPath)
     m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
     m_SelectedItemIndex = 0;                // Set selected index to 0
     
-    inline_addString("Single Player vs AI", width, height);
-    inline_addString("Two Player", width, height);
-    inline_addString("Two Player vs AI", width, height);
-    inline_addString("Exit", width, height);
+    _addString("Single Player vs AI", width, height);
+    _addString("Two Player", width, height);
+    _addString("Two Player vs AI", width, height);
+    _addString("Exit", width, height);
 
 }
 
@@ -64,10 +64,10 @@ int MenuText::getSelectedItem()
     return m_SelectedItemIndex;
 }
 
-void MenuText::inline_addString(String input, float width, float height)
+void MenuText::_addString(String input, float width, float height)
 {
     m_Text.setString(input);
-    m_VectorMenu.push_back(inline_centreOrigin(m_Text));
+    m_VectorMenu.push_back(_centreOrigin(m_Text));
     if (m_VectorMenu.size() == m_SelectedItemIndex + 1) // Set selected text to red when added to Vector
     {
         m_VectorMenu[m_SelectedItemIndex].setFillColor(sf::Color::Red);
@@ -75,10 +75,10 @@ void MenuText::inline_addString(String input, float width, float height)
     {
         m_Text.setFillColor(sf::Color::White);
     }
-    inline_verticallySpaceText(width, height);
+    _verticallySpaceText(width, height);
 }
 
-Text MenuText::inline_centreOrigin(Text textObject)
+Text MenuText::_centreOrigin(Text textObject)
 {
     m_ObjectRect = textObject.getLocalBounds();
     textObject.setOrigin(m_ObjectRect.left +
@@ -88,7 +88,7 @@ Text MenuText::inline_centreOrigin(Text textObject)
     return textObject;
 }
 
-void MenuText::inline_verticallySpaceText(float width, float height)
+void MenuText::_verticallySpaceText(float width, float height)
 {
     // Use iterator to run through the Vector of type Text and
     for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)

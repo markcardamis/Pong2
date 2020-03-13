@@ -23,8 +23,8 @@ private:
     int m_ScoreNumber;                    // Variable to store the score
     int m_xLimit;                         // Use the x-axis range to draw the Text inside the screen
     int m_yLimit;                         // Use the y-axis range to draw the Text inside the screen
-    inline void m_SetString(int);
-    inline void inline_centreOrigin();    // Change Origin of Text Object
+    void _setString(int);
+    void _centreOrigin();    // Change Origin of Text Object
 public:
     ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, String fontPath);
      ~ScoreText();

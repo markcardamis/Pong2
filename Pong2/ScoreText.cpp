@@ -40,7 +40,7 @@ int ScoreText::getScore()
 void ScoreText::reset()
 {
     m_ScoreNumber = 0;
-    m_SetString(m_ScoreNumber);
+    _setString(m_ScoreNumber);
     switch (m_Player)
     {
     case PLAYER_LEFT:
@@ -58,22 +58,16 @@ void ScoreText::reset()
 void ScoreText::add()
 {
     m_ScoreNumber++;
-    m_SetString(m_ScoreNumber);
+    _setString(m_ScoreNumber);
 }
 
-void ScoreText::m_SetString(int number)
+void ScoreText::_setString(int number)
 {
     m_Text.setString(std::to_string(m_ScoreNumber));
-    inline_centreOrigin();
+    _centreOrigin();
 }
 
-//void ScoreText::m_SetString(String textString)
-//{
-//    m_Text.setString(textString);
-//    inline_centreOrigin();
-//}
-
-void ScoreText::inline_centreOrigin()
+void ScoreText::_centreOrigin()
 {
     m_ObjectRect = m_Text.getLocalBounds();
     m_Text.setOrigin(m_ObjectRect.left +

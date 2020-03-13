@@ -38,13 +38,13 @@ void Paddle::reset()
     switch (m_PaddleNumber)
     {
     case PADDLE_LEFT:
-        inline_setPosition(m_PaddleXWallBuffer + inline_getHalfPaddleWidth(), m_yLimit / 2);
+        _setPosition(m_PaddleXWallBuffer + _getHalfPaddleWidth(), m_yLimit / 2);
         break;
     case PADDLE_RIGHT:
-        inline_setPosition(m_xLimit - m_PaddleXWallBuffer - inline_getHalfPaddleWidth(), m_yLimit / 2);
+        _setPosition(m_xLimit - m_PaddleXWallBuffer - _getHalfPaddleWidth(), m_yLimit / 2);
         break;
     case PADDLE_LEFT_2:
-        inline_setPosition(m_PaddleXWallBuffer + inline_getHalfPaddleWidth()*6, m_yLimit / 2);
+        _setPosition(m_PaddleXWallBuffer + _getHalfPaddleWidth()*6, m_yLimit / 2);
         break;
     default:
         break;
@@ -117,37 +117,37 @@ void Paddle::autoSetDirection(float ballPositionY, float ballRadius)
     }
 }
 
-float Paddle::inline_getHalfPaddleWidth()
+float Paddle::_getHalfPaddleWidth()
 {
     return m_Paddle.getSize().x/2;
 }
 
-float Paddle::inline_getHalfPaddleHeight()
+float Paddle::_getHalfPaddleHeight()
 {
     return m_Paddle.getSize().y/2;
 }
 
 float Paddle::getMinPositionX()
 {
-    return getPositionX() - inline_getHalfPaddleWidth();
+    return getPositionX() - _getHalfPaddleWidth();
 }
 
 float Paddle::getMaxPositionX()
 {
-    return getPositionX() + inline_getHalfPaddleWidth();
+    return getPositionX() + _getHalfPaddleWidth();
 }
 
 float Paddle::getMinPositionY()
 {
-    return getPositionY() - inline_getHalfPaddleHeight();
+    return getPositionY() - _getHalfPaddleHeight();
 }
 
 float Paddle::getMaxPositionY()
 {
-    return getPositionY() + inline_getHalfPaddleHeight();
+    return getPositionY() + _getHalfPaddleHeight();
 }
 
-void Paddle::inline_setPosition(float x, float y)
+void Paddle::_setPosition(float x, float y)
 {
     m_Paddle.setPosition(x, y);
 }
