@@ -91,7 +91,7 @@ Text MenuText::_centreOrigin(Text textObject)
 void MenuText::_verticallySpaceText(float width, float height)
 {
     // Use iterator to run through the Vector of type Text and
-    for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
+    for (auto it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
     {
         it->setPosition(Vector2f(width/2, (height/(m_VectorMenu.size() + 2)) * (it - m_VectorMenu.begin()+1)));
         m_ObjectRect = it->getLocalBounds();
