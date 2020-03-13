@@ -11,22 +11,16 @@
 
 MenuText::MenuText(float width, float height, String fontPath)
 {
+    // Set default text options
     m_Font.loadFromFile(fontPath);
-    m_Text[0].setString("Single Player vs AI");
-    m_Text[1].setString("Two Player");
-    m_Text[2].setString("Two Player vs AI");
-    m_Text[3].setString("Exit");
-
-    for (int i = 0; i < MAX_MENU_ITEMS; i++)
-    {
-        m_Text[i].setFont(m_Font);
-        m_Text[i].setFillColor(sf::Color::White);
-        m_Text[i].setPosition(Vector2f(width/2, (height/(MAX_MENU_ITEMS + 2)) * (i+1)));
-        m_Text[i].setCharacterSize(40);
-        m_CentreText(i);
-    }
-    m_SelectedItemIndex = 0;
-    m_Text[0].setFillColor(sf::Color::Red);
+    m_Text.setFont(m_Font);
+    m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
+    m_SelectedItemIndex = 0;                // Set selected index to 0
+    
+    inline_addString("Single Player vs AI", width, height);
+    inline_addString("Two Player", width, height);
+    inline_addString("Two Player vs AI", width, height);
+    inline_addString("Exit", width, height);
 
 }
 
@@ -37,29 +31,31 @@ MenuText::~MenuText()
 
 void MenuText::draw(sf::RenderWindow &window)
 {
-    for (int i = 0; i < MAX_MENU_ITEMS; ++i)
+    
+    for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
     {
-        window.draw(m_Text[i]);
+        window.draw(*it);
     }
+    
 }
 
 void MenuText::moveUp()
 {
     if (m_SelectedItemIndex - 1 >= 0)
     {
-        m_Text[m_SelectedItemIndex].setFillColor(Color::White);
+        m_VectorMenu[m_SelectedItemIndex].setFillColor(Color::White);
         m_SelectedItemIndex--;
-        m_Text[m_SelectedItemIndex].setFillColor(Color::Red);
+        m_VectorMenu[m_SelectedItemIndex].setFillColor(Color::Red);
     }
 }
 
 void MenuText::moveDown()
 {
-    if (m_SelectedItemIndex + 1 < MAX_MENU_ITEMS)
+    if (m_SelectedItemIndex + 1 < m_VectorMenu.size())
     {
-        m_Text[m_SelectedItemIndex].setFillColor(Color::White);
+        m_VectorMenu[m_SelectedItemIndex].setFillColor(Color::White);
         m_SelectedItemIndex++;
-        m_Text[m_SelectedItemIndex].setFillColor(Color::Red);
+        m_VectorMenu[m_SelectedItemIndex].setFillColor(Color::Red);
     }
 }
 
@@ -68,11 +64,40 @@ int MenuText::getSelectedItem()
     return m_SelectedItemIndex;
 }
 
-void MenuText::m_CentreText(int i)
+void MenuText::inline_addString(String input, float width, float height)
 {
-    m_ObjectRect = m_Text[i].getLocalBounds();
-    m_Text[i].setOrigin(m_ObjectRect.left +
+    m_Text.setString(input);
+    m_VectorMenu.push_back(inline_centreOrigin(m_Text));
+    if (m_VectorMenu.size() == m_SelectedItemIndex + 1) // Set selected text to red when added to Vector
+    {
+        m_VectorMenu[m_SelectedItemIndex].setFillColor(sf::Color::Red);
+    } else
+    {
+        m_Text.setFillColor(sf::Color::White);
+    }
+    inline_verticallySpaceText(width, height);
+}
+
+Text MenuText::inline_centreOrigin(Text textObject)
+{
+    m_ObjectRect = textObject.getLocalBounds();
+    textObject.setOrigin(m_ObjectRect.left +
                         m_ObjectRect.width / 2.0f,
                         m_ObjectRect.top +
                         m_ObjectRect.height / 2.0f);
+    return textObject;
+}
+
+void MenuText::inline_verticallySpaceText(float width, float height)
+{
+    // Use iterator to run through the Vector of type Text and
+    for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
+    {
+        it->setPosition(Vector2f(width/2, (height/(m_VectorMenu.size() + 2)) * (it - m_VectorMenu.begin()+1)));
+        m_ObjectRect = it->getLocalBounds();
+          it->setOrigin(m_ObjectRect.left +
+                               m_ObjectRect.width / 2.0f,
+                               m_ObjectRect.top +
+                               m_ObjectRect.height / 2.0f);
+    }
 }
