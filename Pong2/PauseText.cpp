@@ -14,7 +14,7 @@ PauseText::PauseText(int width, int height, String fontPath)
 {
     m_Font.loadFromFile(fontPath);
     m_Text.setFont(m_Font);
-    m_Text.setCharacterSize(40);
+    m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
     m_Text.setFillColor(sf::Color::White);
     m_Text.setPosition(Vector2f(width/2, height/2));
     reset();

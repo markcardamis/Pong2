@@ -10,15 +10,15 @@
 #include <string>
 #include "ScoreText.h"
 
-ScoreText::ScoreText(int gameWidth, int gameHeight, enumPlayer playerNumber, String fontPath)
+ScoreText::ScoreText(int width, int height, enumPlayer playerNumber, String fontPath)
 {
     m_Font.loadFromFile(fontPath);
     m_Text.setFont(m_Font);
-    m_Text.setCharacterSize(40);
+    m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
     m_Text.setFillColor(sf::Color::White);
     m_Player = playerNumber;
-    m_xLimit = gameWidth;
-    m_yLimit = gameHeight;
+    m_xLimit = width;
+    m_yLimit = height;
     reset();
 }
 
