@@ -10,13 +10,13 @@
 #include <string>
 #include "ScoreText.h"
 
-ScoreText::ScoreText(int width, int height, enumPlayer playerNumber, String fontPath)
+ScoreText::ScoreText(int width, int height, enumScoreLocation playerNumber, String fontPath)
 {
     m_Font.loadFromFile(fontPath);
     m_Text.setFont(m_Font);
     m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
     m_Text.setFillColor(sf::Color::White);
-    m_Player = playerNumber;
+    m_Location = playerNumber;
     m_xLimit = width;
     m_yLimit = height;
     reset();
@@ -41,12 +41,12 @@ void ScoreText::reset()
 {
     m_ScoreNumber = 0;
     _setString(m_ScoreNumber);
-    switch (m_Player)
+    switch (m_Location)
     {
-    case PLAYER_LEFT:
+    case LEFT_SCREEN:
         m_Text.setPosition(2*m_xLimit/5, m_yLimit/10);
         break;
-    case PLAYER_RIGHT:
+    case RIGHT_SCREEN:
         m_Text.setPosition(3*m_xLimit/5, m_yLimit/10);
         break;
     default:

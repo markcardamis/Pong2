@@ -16,6 +16,7 @@
 		997D57E223FFF9BC009A7290 /* libsfml-system.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6323FFEC61000C4C83 /* libsfml-system.2.5.1.dylib */; };
 		997D57E323FFF9BC009A7290 /* libsfml-window.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6223FFEC61000C4C83 /* libsfml-window.2.5.1.dylib */; };
 		998CF46B2412999C0081C4DA /* ScoreText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 998CF4692412999C0081C4DA /* ScoreText.cpp */; };
+		99B5073A241BD3FF003778C5 /* TextureHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99B50739241BD3FF003778C5 /* TextureHolder.cpp */; };
 		99EEC966241125950098A1DD /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC964241125950098A1DD /* Ball.cpp */; };
 		99EEC969241125A30098A1DD /* Paddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC967241125A30098A1DD /* Paddle.cpp */; };
 		99EEC96F241125D10098A1DD /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC96D241125D10098A1DD /* SoundManager.cpp */; };
@@ -51,6 +52,8 @@
 		9962EF5B2413F7850020D320 /* PauseText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseText.h; sourceTree = "<group>"; };
 		998CF4692412999C0081C4DA /* ScoreText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreText.cpp; sourceTree = "<group>"; };
 		998CF46A2412999C0081C4DA /* ScoreText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreText.h; sourceTree = "<group>"; };
+		99B50738241BD2EE003778C5 /* TextureHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureHolder.h; sourceTree = "<group>"; };
+		99B50739241BD3FF003778C5 /* TextureHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHolder.cpp; sourceTree = "<group>"; };
 		99EEC964241125950098A1DD /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
 		99EEC965241125950098A1DD /* Ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
 		99EEC967241125A30098A1DD /* Paddle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Paddle.cpp; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				998CF46A2412999C0081C4DA /* ScoreText.h */,
 				998CF4692412999C0081C4DA /* ScoreText.cpp */,
 				9962EF4E2413AD5B0020D320 /* Constants.h */,
+				99B50738241BD2EE003778C5 /* TextureHolder.h */,
+				99B50739241BD3FF003778C5 /* TextureHolder.cpp */,
 			);
 			path = Pong2;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				998CF46B2412999C0081C4DA /* ScoreText.cpp in Sources */,
+				99B5073A241BD3FF003778C5 /* TextureHolder.cpp in Sources */,
 				99EEC966241125950098A1DD /* Ball.cpp in Sources */,
 				99EEC969241125A30098A1DD /* Paddle.cpp in Sources */,
 				9962EF5C2413F7850020D320 /* PauseText.cpp in Sources */,

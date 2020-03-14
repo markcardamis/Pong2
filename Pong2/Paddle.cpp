@@ -31,6 +31,7 @@ Paddle::~Paddle()
 void Paddle::draw(sf::RenderWindow &window)
 {
     window.draw(m_Paddle);
+    _setPaddleDirection(PADDLE_STOP);
 }
 
 void Paddle::reset()
@@ -49,6 +50,7 @@ void Paddle::reset()
     default:
         break;
     }
+    _setPaddleDirection(PADDLE_DOWN);
 }
 
 void Paddle::move(float offsetX, float offsetY)
@@ -81,6 +83,7 @@ void Paddle::moveUp(float deltaTime)
     if (getMinPositionY() > m_PaddleYWallBuffer)
     {
         move(0.f, -m_Speed * deltaTime);
+        _setPaddleDirection(PADDLE_UP);
     }
 }
 
@@ -89,6 +92,7 @@ void Paddle::moveDown(float deltaTime)
     if (getMaxPositionY() < m_yLimit - m_PaddleYWallBuffer)
     {
         move(0.f, m_Speed * deltaTime);
+        _setPaddleDirection(PADDLE_DOWN);
     }
 }
 
@@ -106,25 +110,18 @@ void Paddle::autoSetDirection(float ballPositionY, float ballRadius)
     if (ballPositionY + ballRadius > getMaxPositionY())
     {
         setSpeed(m_SpeedOriginal);
+        _setPaddleDirection(PADDLE_UP);
     }
     else if (ballPositionY - ballRadius < getMinPositionY())
     {
         setSpeed(-m_SpeedOriginal);
+        _setPaddleDirection(PADDLE_DOWN);
     }
     else
     {
         setSpeed(0.f);
+        _setPaddleDirection(PADDLE_STOP);
     }
-}
-
-float Paddle::_getHalfPaddleWidth()
-{
-    return m_Paddle.getSize().x/2;
-}
-
-float Paddle::_getHalfPaddleHeight()
-{
-    return m_Paddle.getSize().y/2;
 }
 
 float Paddle::getMinPositionX()
@@ -147,8 +144,33 @@ float Paddle::getMaxPositionY()
     return getPositionY() + _getHalfPaddleHeight();
 }
 
+bool Paddle::isPaddleOnLeft()
+{
+    return (m_PaddleNumber != PADDLE_RIGHT? true : false);
+}
+
+enumPaddleDirection Paddle::getPaddleDirection()
+{
+    return m_PaddleDirection;
+}
+
+float Paddle::_getHalfPaddleWidth()
+{
+    return m_Paddle.getSize().x/2;
+}
+
+float Paddle::_getHalfPaddleHeight()
+{
+    return m_Paddle.getSize().y/2;
+}
+
 void Paddle::_setPosition(float x, float y)
 {
     m_Paddle.setPosition(x, y);
+}
+
+void Paddle::_setPaddleDirection(enumPaddleDirection paddleDirection)
+{
+    m_PaddleDirection = paddleDirection;
 }
 

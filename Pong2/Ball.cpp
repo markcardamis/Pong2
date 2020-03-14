@@ -50,7 +50,7 @@ void Ball::reset(enumBallDirection ballDirection)
         
     switch (ballDirection)
     {
-    case BALL_INITIAL:
+    case BALL_STOP:
         _setAngle(ballAngle);
         break;
     case BALL_RIGHT:
@@ -74,7 +74,8 @@ void Ball::move(float deltaTime)
 
 void Ball::reboundWall(enumBallDirection ballDirection)
 {
-    float reboundAngle = -1*_getAngle();
+    
+    float reboundAngle = -1*(_getAngle() + _getSpin());
     _setAngle(reboundAngle);
     if (ballDirection == BALL_DOWN) // Rebound down
     {
@@ -88,19 +89,37 @@ void Ball::reboundWall(enumBallDirection ballDirection)
 
 void Ball::reboundPaddle(Paddle& paddle)
 {
+    ////////////////////////////////////////////////////////////
+    // Ball Angle
+    ////////////////////////////////////////////////////////////
+
     // If ball hits bottom half of paddle add more down angle
     if (getPositionY() > paddle.getPositionY())
     {
-        _setAngle(m_Pi - _getAngle() + (std::rand() % 20) * m_Pi / 180);
+        _setAngle(m_Pi - _getAngle() + (std::rand() % 20) * m_Pi / 180 + _getSpin());
     }
     else // If ball hits top half of paddle then add more up angle
     {
-        _setAngle(m_Pi - _getAngle() - (std::rand() % 20) * m_Pi / 180);
+        _setAngle(m_Pi - _getAngle() - (std::rand() % 20) * m_Pi / 180 + _getSpin());
     }
     
-    _setSpeed(_getSpeed()+10); // Increase ball speed
+    // Add clockwise ball spin
+    if ((paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_UP) ||
+        (!paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_DOWN))
+    {
+        _setSpin(_getSpin() - (paddle.getSpeed()/_getSpeed()) * 20 * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
+    } // Add anti-clockwise ball spin
+    else if ((paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_DOWN) ||
+        (!paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_UP))
+    {
+        _setSpin(_getSpin() + (paddle.getSpeed()/_getSpeed()) * 20 * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
+    }
     
-    if (getPositionX() < m_xLimit/2) //Left Paddle
+    ////////////////////////////////////////////////////////////
+    // Ball Position
+    ////////////////////////////////////////////////////////////
+    
+    if (paddle.isPaddleOnLeft()) //Left Paddle
     {
         _setPosition(paddle.getMaxPositionX() + getRadius() + 0.1f, getPositionY());
     }
@@ -109,6 +128,12 @@ void Ball::reboundPaddle(Paddle& paddle)
         _setPosition(paddle.getMinPositionX() - getRadius() - 0.1f, getPositionY());
     }
     
+    ////////////////////////////////////////////////////////////
+    // Ball Speed
+    ////////////////////////////////////////////////////////////
+    
+    _setSpeed(_getSpeed()+10); // Increase ball speed with every paddle collision;
+
 }
 
 float Ball::getPositionX()
@@ -159,6 +184,7 @@ float Ball::_getAngle()
 void Ball::_setAngle(float ballAngle)
 {
     m_Angle = ballAngle;
+    _setSpin(0.f);
 }
 
 void Ball::_move(float offsetX, float offsetY)
@@ -179,5 +205,15 @@ float Ball::_getSpeed()
 void Ball::_setSpeed(float ballSpeed)
 {
     m_Speed = ballSpeed;
+}
+
+float Ball::_getSpin()
+{
+    return m_Spin;
+}
+
+void Ball::_setSpin(float ballSpin)
+{
+    m_Spin = ballSpin;
 }
 

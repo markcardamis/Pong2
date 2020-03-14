@@ -22,16 +22,13 @@
 #include "Paddle.h"
 #include "SoundManager.h"
 
-enum enumState { GAME_STOPPED = 0, GAME_PAUSED = 1, GAME_RUNNING = 2, GAME_WON = 3};
+enum enumState { GAME_STOPPED = 0, GAME_PAUSED = 1, GAME_RUNNING = 2, GAME_WON = 3 };
 
 int main()
 {
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     
     enumState gameState = GAME_STOPPED;
-    const float leftPaddleSpeed = 400.f;
-    float rightPaddleSpeed  = 400.f;
-    float ballSpeed = 600.f;
     bool aiMode = false;
     bool isPlayer2OnLeft = false;
     
@@ -50,15 +47,15 @@ int main()
     soundManager.play(SOUNDMANAGER_BACKGROUND);
 
     // Create the Paddle and the Ball classes
-    Paddle leftPaddle(PADDLE_SIZE, leftPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT);
-    Paddle leftPaddle2(PADDLE_SIZE, leftPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT_2);
-    Paddle rightPaddle(PADDLE_SIZE, rightPaddleSpeed, GAME_WIDTH, GAME_HEIGHT, PADDLE_RIGHT);
-    Ball ball(BALL_RADIUS, ballSpeed, GAME_WIDTH, GAME_HEIGHT, PI);
+    Paddle leftPaddle(PADDLE_SIZE, PADDLE_SPEED, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT);
+    Paddle leftPaddle2(PADDLE_SIZE, PADDLE_SPEED, GAME_WIDTH, GAME_HEIGHT, PADDLE_LEFT_2);
+    Paddle rightPaddle(PADDLE_SIZE, PADDLE_SPEED, GAME_WIDTH, GAME_HEIGHT, PADDLE_RIGHT);
+    Ball ball(BALL_RADIUS, BALL_SPEED, GAME_WIDTH, GAME_HEIGHT, PI);
     
     // Create the Text display classes
     MenuText menuText(GAME_WIDTH, GAME_HEIGHT, FONT_PATH);
-    ScoreText leftScoreText(GAME_WIDTH, GAME_HEIGHT, PLAYER_LEFT , FONT_PATH);
-    ScoreText rightScoreText(GAME_WIDTH, GAME_HEIGHT, PLAYER_RIGHT , FONT_PATH);
+    ScoreText leftScoreText(GAME_WIDTH, GAME_HEIGHT, LEFT_SCREEN , FONT_PATH);
+    ScoreText rightScoreText(GAME_WIDTH, GAME_HEIGHT, RIGHT_SCREEN , FONT_PATH);
     PauseText pauseText(GAME_WIDTH, GAME_HEIGHT, FONT_PATH);
 
 

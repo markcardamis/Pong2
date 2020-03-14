@@ -11,7 +11,7 @@
 
 using namespace sf;
 
-enum enumBallDirection { BALL_INITIAL = 0, BALL_RIGHT = 1, BALL_LEFT = 2, BALL_UP = 3, BALL_DOWN = 4 };
+enum enumBallDirection { BALL_STOP = 0, BALL_UP = 1, BALL_DOWN = 2, BALL_LEFT = 3, BALL_RIGHT = 4 };
 
 class Paddle;
 
@@ -24,6 +24,7 @@ private:
     float m_Speed;                        // Adjust the speed at which the Ball can move
     float m_OriginalSpeed;                       // Save the initial maximum speed to recall after stopping
     float m_Angle = 0.f;                  // Save the angle of trajectory
+    float m_Spin = 0.f;                   // Save the spin of the ball
     int m_xLimit;                         // Use the x-axis range to draw the Ball inside the screen
     int m_yLimit;                         // Use the y-axis range to draw the Ball inside the screen
     float _getAngle();
@@ -32,13 +33,15 @@ private:
     void _setPosition(float x, float y);
     float _getSpeed();
     void _setSpeed(float ballSpeed);
+    float _getSpin();                      // Get ball spin component
+    void _setSpin(float ballSpin);         // Set ball spin to effect bounces
 
     
 public:
     Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi);
     ~Ball();
     void draw(sf::RenderWindow &window);
-    void reset(enumBallDirection ballDirection = BALL_INITIAL);
+    void reset(enumBallDirection ballDirection = BALL_STOP);
     void move(float deltaTime);
     void reboundWall(enumBallDirection ballDirection);
     void reboundPaddle(Paddle& paddle);

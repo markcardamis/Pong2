@@ -17,6 +17,8 @@ const float PI = 3.14159f;
 const int GAME_WIDTH = 1024;
 const int GAME_HEIGHT = 768;
 const sf::Vector2f PADDLE_SIZE(24, 100);
+const float PADDLE_SPEED = 400.f;
+const float BALL_SPEED = 600.f;
 const float BALL_RADIUS = 10.f;
 const sf::Keyboard::Key PLAYER1_UP_KEY = sf::Keyboard::W;
 const sf::Keyboard::Key PLAYER1_DOWN_KEY = sf::Keyboard::S;
