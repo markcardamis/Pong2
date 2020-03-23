@@ -18,17 +18,20 @@
 #include "MenuText.h"
 #include "PauseText.h"
 #include "ScoreText.h"
+#include "OptionsText.h"
 #include "Ball.h"
 #include "Paddle.h"
 #include "SoundManager.h"
 
-enum enumState { GAME_STOPPED = 0, GAME_PAUSED = 1, GAME_RUNNING = 2, GAME_WON = 3 };
+enum enumState { GAME_STOPPED = 0, GAME_PAUSED = 1, GAME_RUNNING = 2, GAME_OPTIONS = 3, GAME_WON = 4};
+enum enumDifficulty { GAME_EASY = 0, GAME_MEDIUM = 1, GAME_HARD = 2};
 
 int main()
 {
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     
     enumState gameState = GAME_STOPPED;
+    enumDifficulty gameDifficulty = GAME_EASY;
     bool aiMode = false;
     bool isPlayer2OnLeft = false;
     
@@ -57,6 +60,7 @@ int main()
     ScoreText leftScoreText(GAME_WIDTH, GAME_HEIGHT, LEFT_SCREEN , FONT_PATH);
     ScoreText rightScoreText(GAME_WIDTH, GAME_HEIGHT, RIGHT_SCREEN , FONT_PATH);
     PauseText pauseText(GAME_WIDTH, GAME_HEIGHT, FONT_PATH);
+    OptionsText optionsText(GAME_WIDTH, GAME_HEIGHT, FONT_PATH);
 
 
     while (window.isOpen())
@@ -94,11 +98,19 @@ int main()
                         {
                             menuText.moveUp();
                         }
+                        else if (gameState == GAME_OPTIONS)
+                        {
+                            optionsText.moveUp();
+                        }
                         break;
                     case sf::Keyboard::Down:
                         if (gameState == GAME_STOPPED)
                         {
                             menuText.moveDown();
+                        }
+                        else if (gameState == GAME_OPTIONS)
+                        {
+                            optionsText.moveDown();
                         }
                         break;
                     case sf::Keyboard::Enter:
@@ -122,6 +134,9 @@ int main()
                                 isPlayer2OnLeft = true;
                                 break;
                             case 3:
+                                gameState = GAME_OPTIONS;
+                                break;
+                            case 4:
                                 gameState = GAME_STOPPED;
                                 window.close();
                                 break;
@@ -139,11 +154,33 @@ int main()
                             leftScoreText.reset();
                             rightScoreText.reset();
                             pauseText.reset();
-                        } else if (gameState == GAME_WON)
+                        }
+                        else if (gameState == GAME_WON ||
+                                 gameState == GAME_PAUSED) //Jump back to menu screen if press Enter
                         {
                             gameState = GAME_STOPPED;
                         }
-                        break;
+                        else if (gameState == GAME_OPTIONS)
+                        {
+                            switch (optionsText.getSelectedItem())
+                            {
+                            case 0:
+                                gameDifficulty = GAME_EASY;
+                                ball.setDifficulty(GAME_EASY);
+                                break;
+                            case 1:
+                                gameDifficulty = GAME_MEDIUM;
+                                ball.setDifficulty(GAME_MEDIUM);
+                                break;
+                            case 2:
+                                gameDifficulty = GAME_HARD;
+                                ball.setDifficulty(GAME_HARD);
+                                break;
+                            }
+                            
+                            gameState = GAME_STOPPED; //Jump back to menu screen with correct difficulty
+                        }
+                        
                     default:
                         break;
                 }
@@ -305,6 +342,9 @@ int main()
                 leftScoreText.draw(window);
                 rightScoreText.draw(window);
                 ball.draw(window);
+                break;
+            case GAME_OPTIONS:
+                optionsText.draw(window);
                 break;
             case GAME_WON:
                 pauseText.draw(window);

@@ -1,36 +1,35 @@
 //
-//  MenuText.cpp
+//  OptionsText.cpp
 //  Pong2
 //
-//  Created by Mark Cardamis on 7/3/20.
+//  Created by Mark Cardamis on 24/3/20.
 //  Copyright © 2020 Mark Cardamis. All rights reserved.
 //
 
 #include <SFML/Graphics.hpp>
-#include "MenuText.h"
+#include "OptionsText.h"
 
-MenuText::MenuText(float width, float height, String fontPath)
+OptionsText::OptionsText(float width, float height, String fontPath)
 {
     // Set default text options
     m_Font.loadFromFile(fontPath);
     m_Text.setFont(m_Font);
     m_Text.setCharacterSize(height/18);     // Set dynamic font size based on height
-    m_SelectedItemIndex = 0;                // Set selected index to 0
+    m_SelectedItemIndex = 1;                // Set selected index to 1 not to highlight first option
     
-    _addString("Single Player vs AI", width, height);
-    _addString("Two Player", width, height);
-    _addString("Two Player vs AI", width, height);
-    _addString("Options", width, height);
-    _addString("Exit", width, height);
+    _addString("Set Difficulty then press Enter", width, height);
+    _addString("Easy", width, height);
+    _addString("Medium", width, height);
+    _addString("Hard", width, height);
 
 }
 
-MenuText::~MenuText()
+OptionsText::~OptionsText()
 {
     
 }
 
-void MenuText::draw(sf::RenderWindow &window)
+void OptionsText::draw(sf::RenderWindow &window)
 {
     
     for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
@@ -40,9 +39,9 @@ void MenuText::draw(sf::RenderWindow &window)
     
 }
 
-void MenuText::moveUp()
+void OptionsText::moveUp()
 {
-    if (m_SelectedItemIndex - 1 >= 0)
+    if (m_SelectedItemIndex >= 0)
     {
         m_VectorMenu[m_SelectedItemIndex].setFillColor(Color::White);
         m_SelectedItemIndex--;
@@ -50,7 +49,7 @@ void MenuText::moveUp()
     }
 }
 
-void MenuText::moveDown()
+void OptionsText::moveDown()
 {
     if (m_SelectedItemIndex + 1 < m_VectorMenu.size())
     {
@@ -60,12 +59,12 @@ void MenuText::moveDown()
     }
 }
 
-int MenuText::getSelectedItem()
+int OptionsText::getSelectedItem()
 {
-    return m_SelectedItemIndex;
+    return (m_SelectedItemIndex - 1); // subtract 1 as first item is non selectable
 }
 
-void MenuText::_addString(String input, float width, float height)
+void OptionsText::_addString(String input, float width, float height)
 {
     m_Text.setString(input);
     m_VectorMenu.push_back(_centreOrigin(m_Text));
@@ -79,7 +78,7 @@ void MenuText::_addString(String input, float width, float height)
     _verticallySpaceText(width, height);
 }
 
-Text MenuText::_centreOrigin(Text textObject)
+Text OptionsText::_centreOrigin(Text textObject)
 {
     m_ObjectRect = textObject.getLocalBounds();
     textObject.setOrigin(m_ObjectRect.left +
@@ -89,7 +88,7 @@ Text MenuText::_centreOrigin(Text textObject)
     return textObject;
 }
 
-void MenuText::_verticallySpaceText(float width, float height)
+void OptionsText::_verticallySpaceText(float width, float height)
 {
     // Use iterator to run through the Vector of type Text and
     for (auto it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
@@ -102,3 +101,4 @@ void MenuText::_verticallySpaceText(float width, float height)
                                m_ObjectRect.height / 2.0f);
     }
 }
+

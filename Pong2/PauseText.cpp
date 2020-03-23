@@ -38,7 +38,7 @@ void PauseText::setString(String textString)
 
 void PauseText::reset()
 {
-    setString("Press space to begin the round");
+    setString("Press Space to start");
     _centreOrigin();
 }
 

@@ -11,7 +11,7 @@
 #include "Ball.h"
 #include "Paddle.h"
 
-Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi)
+Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi, int difficulty)
 {
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     m_Ball.setRadius(ballRadius);
@@ -22,6 +22,7 @@ Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, flo
     m_xLimit = gameWidth;
     m_yLimit = gameHeight;
     m_Pi = pi;
+    m_Difficulty = difficulty;
     reset();
 }
 
@@ -66,6 +67,36 @@ void Ball::reset(enumBallDirection ballDirection)
 
 }
 
+void Ball::setDifficulty(int gameDifficulty)
+{
+    m_Difficulty = gameDifficulty;
+    _applyDifficulty();
+}
+
+void Ball::_applyDifficulty()
+{
+    switch (m_Difficulty)
+    {
+    case 0: // Easy
+        m_BallAngleFactor = 1;
+        m_BallSpinFactor = 1;
+        m_BallSpeedFactor = 1;
+        break;
+    case 1: // Medium
+        m_BallAngleFactor = 20;
+        m_BallSpinFactor = 20;
+        m_BallSpeedFactor = 10;
+        break;
+    case 2: // Hard
+        m_BallAngleFactor = 25;
+        m_BallSpinFactor = 25;
+        m_BallSpeedFactor = 20;
+        break;
+    default:
+        break;
+    }
+}
+
 void Ball::move(float deltaTime)
 {
     float factor = m_Speed * deltaTime;
@@ -89,6 +120,7 @@ void Ball::reboundWall(enumBallDirection ballDirection)
 
 void Ball::reboundPaddle(Paddle& paddle)
 {
+    
     ////////////////////////////////////////////////////////////
     // Ball Angle
     ////////////////////////////////////////////////////////////
@@ -96,23 +128,23 @@ void Ball::reboundPaddle(Paddle& paddle)
     // If ball hits bottom half of paddle add more down angle
     if (getPositionY() > paddle.getPositionY())
     {
-        _setAngle(m_Pi - _getAngle() + (std::rand() % 20) * m_Pi / 180 + _getSpin());
+        _setAngle(m_Pi - _getAngle() + (std::rand() % m_BallAngleFactor) * m_Pi / 180 + _getSpin());
     }
     else // If ball hits top half of paddle then add more up angle
     {
-        _setAngle(m_Pi - _getAngle() - (std::rand() % 20) * m_Pi / 180 + _getSpin());
+        _setAngle(m_Pi - _getAngle() - (std::rand() % m_BallAngleFactor) * m_Pi / 180 + _getSpin());
     }
     
     // Add clockwise ball spin
     if ((paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_UP) ||
         (!paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_DOWN))
     {
-        _setSpin(_getSpin() - (paddle.getSpeed()/_getSpeed()) * 20 * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
+        _setSpin(_getSpin() - (paddle.getSpeed()/_getSpeed()) * m_BallSpinFactor * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
     } // Add anti-clockwise ball spin
     else if ((paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_DOWN) ||
         (!paddle.isPaddleOnLeft() && paddle.getPaddleDirection() == PADDLE_UP))
     {
-        _setSpin(_getSpin() + (paddle.getSpeed()/_getSpeed()) * 20 * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
+        _setSpin(_getSpin() + (paddle.getSpeed()/_getSpeed()) * m_BallSpinFactor * m_Pi / 180);// add 20 degrees of paddle/ball speed ratio
     }
     
     ////////////////////////////////////////////////////////////
@@ -132,7 +164,7 @@ void Ball::reboundPaddle(Paddle& paddle)
     // Ball Speed
     ////////////////////////////////////////////////////////////
     
-    _setSpeed(_getSpeed()+10); // Increase ball speed with every paddle collision;
+    _setSpeed(_getSpeed() + m_BallSpeedFactor); // Increase ball speed with every paddle collision;
 
 }
 
@@ -206,6 +238,7 @@ void Ball::_setSpeed(float ballSpeed)
 {
     m_Speed = ballSpeed;
 }
+
 
 float Ball::_getSpin()
 {
