@@ -27,7 +27,7 @@ Ball::Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, flo
     m_xLimit = gameWidth;
     m_yLimit = gameHeight;
     m_Pi = pi;
-    m_Difficulty = difficulty;
+    setDifficulty(difficulty);
     reset();
 }
 
