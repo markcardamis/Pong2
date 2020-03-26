@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include "Paddle.h"
 
-Paddle::Paddle(Vector2f paddleSize, float paddleSpeed, int gameWidth, int gameHeight, enumPaddlePlayer paddlePlayer)
+Paddle::Paddle(Vector2f paddleSize, float paddleSpeed, int gameWidth, int gameHeight, int paddlePlayer)
 {
     m_Paddle.setSize(paddleSize);
     m_Paddle.setOutlineThickness(1);
@@ -28,9 +28,9 @@ Paddle::~Paddle()
     
 }
 
-void Paddle::draw(sf::RenderWindow &window)
+void Paddle::draw(sf::RenderWindow* window)
 {
-    window.draw(m_Paddle);
+    window->draw(m_Paddle);
     _setPaddleDirection(PADDLE_STOP);
 }
 
@@ -61,21 +61,6 @@ void Paddle::move(float offsetX, float offsetY)
 void Paddle::setSpeed(float paddleSpeed)
 {
     m_Speed = paddleSpeed;
-}
-
-float Paddle::getSpeed()
-{
-    return m_Speed;
-}
-
-float Paddle::getPositionX()
-{
-    return m_Paddle.getPosition().x;
-}
-
-float Paddle::getPositionY()
-{
-    return m_Paddle.getPosition().y;
 }
 
 void Paddle::moveUp(float deltaTime)
@@ -124,44 +109,14 @@ void Paddle::autoSetDirection(float ballPositionY, float ballRadius)
     }
 }
 
-float Paddle::getMinPositionX()
-{
-    return getPositionX() - _getHalfPaddleWidth();
-}
-
-float Paddle::getMaxPositionX()
-{
-    return getPositionX() + _getHalfPaddleWidth();
-}
-
-float Paddle::getMinPositionY()
-{
-    return getPositionY() - _getHalfPaddleHeight();
-}
-
-float Paddle::getMaxPositionY()
-{
-    return getPositionY() + _getHalfPaddleHeight();
-}
-
 bool Paddle::isPaddleOnLeft()
 {
     return (m_PaddleNumber != PADDLE_RIGHT? true : false);
 }
 
-enumPaddleDirection Paddle::getPaddleDirection()
+int Paddle::getPaddleDirection()
 {
     return m_PaddleDirection;
-}
-
-float Paddle::_getHalfPaddleWidth()
-{
-    return m_Paddle.getSize().x/2;
-}
-
-float Paddle::_getHalfPaddleHeight()
-{
-    return m_Paddle.getSize().y/2;
 }
 
 void Paddle::_setPosition(float x, float y)
@@ -169,7 +124,7 @@ void Paddle::_setPosition(float x, float y)
     m_Paddle.setPosition(x, y);
 }
 
-void Paddle::_setPaddleDirection(enumPaddleDirection paddleDirection)
+void Paddle::_setPaddleDirection(int paddleDirection)
 {
     m_PaddleDirection = paddleDirection;
 }

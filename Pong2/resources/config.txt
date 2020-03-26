@@ -1,0 +1,19 @@
+PI=3.14159f
+GAME_WIDTH=1024
+GAME_HEIGHT=768
+PADDLE_SIZE=24,100
+PADDLE_SPEED=400.f
+BALL_SPEED=600.f
+BALL_RADIUS=10.f
+
+# Check sf::Keyboard for key integer mappings 
+PLAYER1_UP_KEY=22
+PLAYER1_DOWN_KEY=18
+PLAYER2_UP_KEY=8
+PLAYER2_DOWN_KEY=10
+
+FONT_PATH=resources/sansation.ttf
+BACKGROUND_SOUND_PATH=sound/music.wav
+PADDLE_SOUND_PATH=sound/paddle.wav
+WALL_SOUND_PATH=sound/wall.wav
+SCORE_SOUND_PATH=sound/score.wav
