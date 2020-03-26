@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		991D3875242C39DB0050C4C7 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 991D3870242C39DB0050C4C7 /* Makefile */; };
 		997D57DF23FFF9BC009A7290 /* libsfml-audio.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6423FFEC61000C4C83 /* libsfml-audio.2.5.1.dylib */; };
 		997D57E023FFF9BC009A7290 /* libsfml-graphics.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6123FFEC61000C4C83 /* libsfml-graphics.2.5.1.dylib */; };
 		997D57E123FFF9BC009A7290 /* libsfml-network.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6023FFEC61000C4C83 /* libsfml-network.2.5.1.dylib */; };
@@ -34,7 +33,6 @@
 		990CBC6223FFEC61000C4C83 /* libsfml-window.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.5.1.dylib"; path = "SFML/lib/libsfml-window.2.5.1.dylib"; sourceTree = "<group>"; };
 		990CBC6323FFEC61000C4C83 /* libsfml-system.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.5.1.dylib"; path = "SFML/lib/libsfml-system.2.5.1.dylib"; sourceTree = "<group>"; };
 		990CBC6423FFEC61000C4C83 /* libsfml-audio.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.5.1.dylib"; path = "SFML/lib/libsfml-audio.2.5.1.dylib"; sourceTree = "<group>"; };
-		991D3870242C39DB0050C4C7 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		991D3871242C39DB0050C4C7 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		991D3872242C39DB0050C4C7 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		991D3873242C39DB0050C4C7 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				991D3874242C39DB0050C4C7 /* main.out */,
-				991D3870242C39DB0050C4C7 /* Makefile */,
 				991D3871242C39DB0050C4C7 /* resources */,
 				991D3872242C39DB0050C4C7 /* sound */,
 				991D3873242C39DB0050C4C7 /* src */,
@@ -160,7 +157,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				991D3875242C39DB0050C4C7 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
