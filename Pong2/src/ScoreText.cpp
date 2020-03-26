@@ -10,7 +10,7 @@
 #include <string>
 #include "ScoreText.h"
 
-ScoreText::ScoreText(int width, int height, enumScoreLocation playerNumber, String fontPath)
+ScoreText::ScoreText(int width, int height, int playerNumber, String fontPath)
 {
     m_Font.loadFromFile(fontPath);
     m_Text.setFont(m_Font);
@@ -27,9 +27,9 @@ ScoreText::~ScoreText()
     
 }
 
-void ScoreText::draw(sf::RenderWindow &window)
+void ScoreText::draw(sf::RenderWindow* window)
 {
-    window.draw(m_Text);
+    window->draw(m_Text);
 }
 
 int ScoreText::getScore()

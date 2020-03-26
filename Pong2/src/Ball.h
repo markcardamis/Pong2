@@ -9,9 +9,9 @@
 #ifndef Ball_h
 #define Ball_h
 
-using namespace sf;
+#include <SFML/Graphics.hpp>
 
-enum enumBallDirection { BALL_STOP = 0, BALL_UP = 1, BALL_DOWN = 2, BALL_LEFT = 3, BALL_RIGHT = 4 };
+using namespace sf;
 
 class Paddle;
 
@@ -19,7 +19,7 @@ class Ball
 {
 private:
     CircleShape m_Ball;                   // Create and store a Ball as a CircleShape in SFML
-    enumBallDirection m_Direction;        // Set an initial direction for ball restarts
+    int m_Direction;        // Set an initial direction for ball restarts
     float m_Pi;                           // Save variable PI which is passed in constructor
     float m_Speed;                        // Adjust the speed at which the Ball can move
     float m_OriginalSpeed;                // Save the initial maximum speed to recall after stopping
@@ -41,24 +41,31 @@ private:
     void _setSpin(float ballSpin);         // Set ball spin to effect bounces
     void _applyDifficulty();                 // Get the current difficulty and set the variables
 
-    
 public:
     Ball(float ballRadius, float ballSpeed, int gameWidth, int gameHeight, float pi, int difficulty = 0);
     ~Ball();
-    void draw(sf::RenderWindow &window);
-    void reset(enumBallDirection ballDirection = BALL_STOP);
+    void draw(sf::RenderWindow* window);
+    void reset(int ballDirection = BALL_STOP);
     void setDifficulty(int gameDifficulty);
     void move(float deltaTime);
-    void reboundWall(enumBallDirection ballDirection);
+    void reboundWall(int ballDirection);
     void reboundPaddle(Paddle& paddle);
-    float getPositionX();
-    float getPositionY();
-    float getRadius();
-    float getMinPositionX();
-    float getMaxPositionX();
-    float getMinPositionY();
-    float getMaxPositionY();
+    inline float getPositionX() const { return m_Ball.getPosition().x; };
+    inline float getPositionY() const { return m_Ball.getPosition().y; };
+    inline float getRadius() const { return m_Ball.getRadius(); };
+    inline float getMinPositionX() const { return getPositionX() - getRadius(); };
+    inline float getMaxPositionX() const { return getPositionX() + getRadius(); };
+    inline float getMinPositionY() const { return getPositionY() - getRadius(); };
+    inline float getMaxPositionY() const {  return getPositionY() + getRadius(); };
     bool isBallMovingLeft();
+
+    enum { 
+        BALL_STOP = 0, 
+        BALL_UP = 1, 
+        BALL_DOWN = 2, 
+        BALL_LEFT = 3, 
+        BALL_RIGHT = 4 
+    };
 };
 
 #endif /* Ball_h */

@@ -22,7 +22,7 @@ SoundManager::SoundManager()
     m_SoundScore.setBuffer(m_BufferScore);
 }
 
-void SoundManager::play(enumSound eSound)
+void SoundManager::play(int eSound)
 {
     switch (eSound)
     {

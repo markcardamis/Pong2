@@ -29,12 +29,12 @@ OptionsText::~OptionsText()
     
 }
 
-void OptionsText::draw(sf::RenderWindow &window)
+void OptionsText::draw(sf::RenderWindow* window)
 {
     
     for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
     {
-        window.draw(*it);
+        window->draw(*it);
     }
     
 }

@@ -9,9 +9,9 @@
 #ifndef SoundManager_h
 #define SoundManager_h
 
-using namespace sf;
+#include <SFML/Audio.hpp>
 
-enum enumSound { SOUNDMANAGER_BACKGROUND = 0, SOUNDMANAGER_PADDLE = 1, SOUNDMANAGER_WALL = 2, SOUNDMANAGER_SCORE = 3 };
+using namespace sf;
 
 class SoundManager
 {
@@ -24,10 +24,17 @@ private:
     Sound m_SoundPaddle;
     Sound m_SoundWall;
     Sound m_SoundScore;
-    enumSound m_SoundSelect;
+    int m_SoundSelect;
 public:
     SoundManager();
-    void play(enumSound eSound);
+    void play(int eSound);
+
+    enum { 
+        SOUNDMANAGER_BACKGROUND = 0, 
+        SOUNDMANAGER_PADDLE = 1, 
+        SOUNDMANAGER_WALL = 2, 
+        SOUNDMANAGER_SCORE = 3 
+    };
 };
 
 #endif /* SoundManager_h */

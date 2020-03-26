@@ -26,7 +26,7 @@ private:
 public:
     OptionsText(float width, float height, String fontPath);
     ~OptionsText();
-    void draw(sf::RenderWindow &window);
+    void draw(RenderWindow* window);
     void moveUp();
     void moveDown();
     int getSelectedItem();

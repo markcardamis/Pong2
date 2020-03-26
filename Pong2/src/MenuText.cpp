@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include "MenuText.h"
 
-MenuText::MenuText(float width, float height, String fontPath)
+MenuText::MenuText(int width, int height, String fontPath)
 {
     // Set default text options
     m_Font.loadFromFile(fontPath);
@@ -30,12 +30,12 @@ MenuText::~MenuText()
     
 }
 
-void MenuText::draw(sf::RenderWindow &window)
+void MenuText::draw(sf::RenderWindow* window)
 {
     
     for (std::vector<Text>::iterator it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)
     {
-        window.draw(*it);
+        window->draw(*it);
     }
     
 }
@@ -65,7 +65,7 @@ int MenuText::getSelectedItem()
     return m_SelectedItemIndex;
 }
 
-void MenuText::_addString(String input, float width, float height)
+void MenuText::_addString(String input, int width, int height)
 {
     m_Text.setString(input);
     m_VectorMenu.push_back(_centreOrigin(m_Text));
@@ -89,7 +89,7 @@ Text MenuText::_centreOrigin(Text textObject)
     return textObject;
 }
 
-void MenuText::_verticallySpaceText(float width, float height)
+void MenuText::_verticallySpaceText(int width, int height)
 {
     // Use iterator to run through the Vector of type Text and
     for (auto it = m_VectorMenu.begin(); it != m_VectorMenu.end(); ++it)

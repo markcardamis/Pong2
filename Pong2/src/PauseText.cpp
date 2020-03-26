@@ -25,9 +25,9 @@ PauseText::~PauseText()
     
 }
 
-void PauseText::draw(sf::RenderWindow &window)
+void PauseText::draw(sf::RenderWindow* window)
 {
-    window.draw(m_Text);
+    window->draw(m_Text);
 }
 
 void PauseText::setString(String textString)
