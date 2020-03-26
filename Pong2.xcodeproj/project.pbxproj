@@ -7,20 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9927578D23FFEA0600E15AC4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9927578C23FFEA0600E15AC4 /* main.cpp */; };
-		994312E9242903A50054F594 /* OptionsText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 994312E7242903A50054F594 /* OptionsText.cpp */; };
-		9962EF4D2413ACFA0020D320 /* MenuText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9962EF4B2413ACFA0020D320 /* MenuText.cpp */; };
-		9962EF5C2413F7850020D320 /* PauseText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9962EF5A2413F7850020D320 /* PauseText.cpp */; };
+		991D3875242C39DB0050C4C7 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 991D3870242C39DB0050C4C7 /* Makefile */; };
 		997D57DF23FFF9BC009A7290 /* libsfml-audio.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6423FFEC61000C4C83 /* libsfml-audio.2.5.1.dylib */; };
 		997D57E023FFF9BC009A7290 /* libsfml-graphics.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6123FFEC61000C4C83 /* libsfml-graphics.2.5.1.dylib */; };
 		997D57E123FFF9BC009A7290 /* libsfml-network.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6023FFEC61000C4C83 /* libsfml-network.2.5.1.dylib */; };
 		997D57E223FFF9BC009A7290 /* libsfml-system.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6323FFEC61000C4C83 /* libsfml-system.2.5.1.dylib */; };
 		997D57E323FFF9BC009A7290 /* libsfml-window.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 990CBC6223FFEC61000C4C83 /* libsfml-window.2.5.1.dylib */; };
-		998CF46B2412999C0081C4DA /* ScoreText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 998CF4692412999C0081C4DA /* ScoreText.cpp */; };
-		99B5073A241BD3FF003778C5 /* TextureHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99B50739241BD3FF003778C5 /* TextureHolder.cpp */; };
-		99EEC966241125950098A1DD /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC964241125950098A1DD /* Ball.cpp */; };
-		99EEC969241125A30098A1DD /* Paddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC967241125A30098A1DD /* Paddle.cpp */; };
-		99EEC96F241125D10098A1DD /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99EEC96D241125D10098A1DD /* SoundManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,27 +34,14 @@
 		990CBC6223FFEC61000C4C83 /* libsfml-window.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.5.1.dylib"; path = "SFML/lib/libsfml-window.2.5.1.dylib"; sourceTree = "<group>"; };
 		990CBC6323FFEC61000C4C83 /* libsfml-system.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.5.1.dylib"; path = "SFML/lib/libsfml-system.2.5.1.dylib"; sourceTree = "<group>"; };
 		990CBC6423FFEC61000C4C83 /* libsfml-audio.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.5.1.dylib"; path = "SFML/lib/libsfml-audio.2.5.1.dylib"; sourceTree = "<group>"; };
+		991D3870242C39DB0050C4C7 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		991D3871242C39DB0050C4C7 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
+		991D3872242C39DB0050C4C7 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
+		991D3873242C39DB0050C4C7 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		991D3874242C39DB0050C4C7 /* main.out */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = main.out; sourceTree = "<group>"; };
 		9927578923FFEA0600E15AC4 /* Pong2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pong2; sourceTree = BUILT_PRODUCTS_DIR; };
-		9927578C23FFEA0600E15AC4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		994312E7242903A50054F594 /* OptionsText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OptionsText.cpp; sourceTree = "<group>"; };
-		994312E8242903A50054F594 /* OptionsText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsText.h; sourceTree = "<group>"; };
 		994D53E2241A553B00E75C8A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		994E31EF2414DC9E00099034 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		9962EF4B2413ACFA0020D320 /* MenuText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MenuText.cpp; sourceTree = "<group>"; };
-		9962EF4C2413ACFA0020D320 /* MenuText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuText.h; sourceTree = "<group>"; };
-		9962EF4E2413AD5B0020D320 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		9962EF5A2413F7850020D320 /* PauseText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PauseText.cpp; sourceTree = "<group>"; };
-		9962EF5B2413F7850020D320 /* PauseText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PauseText.h; sourceTree = "<group>"; };
-		998CF4692412999C0081C4DA /* ScoreText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreText.cpp; sourceTree = "<group>"; };
-		998CF46A2412999C0081C4DA /* ScoreText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreText.h; sourceTree = "<group>"; };
-		99B50738241BD2EE003778C5 /* TextureHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureHolder.h; sourceTree = "<group>"; };
-		99B50739241BD3FF003778C5 /* TextureHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHolder.cpp; sourceTree = "<group>"; };
-		99EEC964241125950098A1DD /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
-		99EEC965241125950098A1DD /* Ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
-		99EEC967241125A30098A1DD /* Paddle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Paddle.cpp; sourceTree = "<group>"; };
-		99EEC968241125A30098A1DD /* Paddle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Paddle.h; sourceTree = "<group>"; };
-		99EEC96D241125D10098A1DD /* SoundManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
-		99EEC96E241125D10098A1DD /* SoundManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,26 +92,13 @@
 		9927578B23FFEA0600E15AC4 /* Pong2 */ = {
 			isa = PBXGroup;
 			children = (
+				991D3874242C39DB0050C4C7 /* main.out */,
+				991D3870242C39DB0050C4C7 /* Makefile */,
+				991D3871242C39DB0050C4C7 /* resources */,
+				991D3872242C39DB0050C4C7 /* sound */,
+				991D3873242C39DB0050C4C7 /* src */,
 				994D53E2241A553B00E75C8A /* .gitignore */,
 				994E31EF2414DC9E00099034 /* README.md */,
-				9927578C23FFEA0600E15AC4 /* main.cpp */,
-				99EEC965241125950098A1DD /* Ball.h */,
-				99EEC964241125950098A1DD /* Ball.cpp */,
-				99EEC968241125A30098A1DD /* Paddle.h */,
-				99EEC967241125A30098A1DD /* Paddle.cpp */,
-				99EEC96E241125D10098A1DD /* SoundManager.h */,
-				99EEC96D241125D10098A1DD /* SoundManager.cpp */,
-				9962EF4C2413ACFA0020D320 /* MenuText.h */,
-				9962EF4B2413ACFA0020D320 /* MenuText.cpp */,
-				9962EF5B2413F7850020D320 /* PauseText.h */,
-				9962EF5A2413F7850020D320 /* PauseText.cpp */,
-				998CF46A2412999C0081C4DA /* ScoreText.h */,
-				998CF4692412999C0081C4DA /* ScoreText.cpp */,
-				994312E8242903A50054F594 /* OptionsText.h */,
-				994312E7242903A50054F594 /* OptionsText.cpp */,
-				9962EF4E2413AD5B0020D320 /* Constants.h */,
-				99B50738241BD2EE003778C5 /* TextureHolder.h */,
-				99B50739241BD3FF003778C5 /* TextureHolder.cpp */,
 			);
 			path = Pong2;
 			sourceTree = "<group>";
@@ -163,7 +129,7 @@
 		9927578123FFEA0600E15AC4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Mark Cardamis";
 				TargetAttributes = {
 					9927578823FFEA0600E15AC4 = {
@@ -194,15 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				998CF46B2412999C0081C4DA /* ScoreText.cpp in Sources */,
-				99B5073A241BD3FF003778C5 /* TextureHolder.cpp in Sources */,
-				994312E9242903A50054F594 /* OptionsText.cpp in Sources */,
-				99EEC966241125950098A1DD /* Ball.cpp in Sources */,
-				99EEC969241125A30098A1DD /* Paddle.cpp in Sources */,
-				9962EF5C2413F7850020D320 /* PauseText.cpp in Sources */,
-				9962EF4D2413ACFA0020D320 /* MenuText.cpp in Sources */,
-				9927578D23FFEA0600E15AC4 /* main.cpp in Sources */,
-				99EEC96F241125D10098A1DD /* SoundManager.cpp in Sources */,
+				991D3875242C39DB0050C4C7 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +279,7 @@
 		9927579123FFEA0600E15AC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/SFML/include";
 				LIBRARY_SEARCH_PATHS = (
@@ -334,6 +293,7 @@
 		9927579223FFEA0600E15AC4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/SFML/include";
 				LIBRARY_SEARCH_PATHS = (
