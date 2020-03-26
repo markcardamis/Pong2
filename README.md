@@ -4,7 +4,7 @@ A Pong Game created in C++ using SFML framework.
 ## Getting Started
 * Instructions assume you have clang++ compiler and SFML framework on your system
 * Change into the directory using ```cd Pong2/Pong2``` 
-* Compile files ```clang++ -std=c++11 -stdlib=libc++ -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system *.cpp -o main.out``` 
+* Compile files ```make``` 
 
 ## Game Play
 ### Running the game
